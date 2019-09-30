@@ -1,0 +1,1 @@
+spawnpoint 'mp_m_freemode_01' { x = -1006.402, y = 6272.383, z = 1.503 }
