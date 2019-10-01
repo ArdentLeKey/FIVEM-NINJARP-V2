@@ -1,6 +1,9 @@
 --||@SuperCoolNinja.||--
+local playerID = PlayerId()
+local playerName = GetPlayerName(source)
+local playerPed = PlayerPedId()
 _menuPool = NativeUI.CreatePool()
-mainMenu = NativeUI.CreateMenu("Menu Personnel","~b~MENU INTERACTION")
+mainMenu = NativeUI.CreateMenu(playerName,"~b~MENU INTERACTION")
 _menuPool:Add(mainMenu)
 
 function PersonalMenu()
@@ -58,7 +61,7 @@ function PersonalMenu()
  
                  _menuPool = NativeUI.CreatePool()
  
-                  mainMenu = NativeUI.CreateMenu("Menu Personnel", "~b~MENU INTERACTION")
+                  mainMenu = NativeUI.CreateMenu(playerName, "~b~MENU INTERACTION")
                  _menuPool:Add(mainMenu)
              end
          end

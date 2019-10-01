@@ -14,11 +14,19 @@ AddEventHandler('vMenuNotif:showNotification', function(msg)
 	Notify(msg)
 end)
 
+
+
+--[[
+	local x = 0.50
+	local y = 0.47
+	local width = 1.0
+	local height = 1.0
+]]
 -----------------||Mon Glare||----------------
-local x = 0.48
-local y = 0.45
-local width = 0.97
-local height = 0.99
+local x = 0.54
+local y = 0.51
+local width = 1.2
+local height = 1.1
 
 isValidGlare = false
 function startGlare()
@@ -134,11 +142,29 @@ function RenderCarte()
 	DrawAdvancedText2(0.897000000000001, 0.410, 0.005, 0.0028, 0.3, "Permis de port d'armes : ~p~ SOON", 255, 255, 255, 255, 0, 1)
 end
 
+function RequestToSave()
+	LastPosX, LastPosY, LastPosZ = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+	TriggerServerEvent("vMenuPosition:SavePos", LastPosX , LastPosY , LastPosZ)
+	Notify("~g~ Position sauvegarder.")
+end
+
 -----||MENU||-----
 function AddMainMenu(menu)
+
 	subMenuPaper = _menuPool:AddSubMenu(menu, "Mon Porteuifeuil", "")
+	subMenuAction = _menuPool:AddSubMenu(menu, "Intéraction", "")
 	SubMenuJobs = _menuPool:AddSubMenu(menu, "Métiers", "")
+	local myPosItem = NativeUI.CreateColouredItem("Sauvegarder votre position", "", Colours.Green, Colours.Green)
+	menu:AddItem(myPosItem)
+
+	menu.OnItemSelect = function(sender, item, index)
+		if item == myPosItem then
+			RequestToSave()
+        end
+    end
+
 	AskIdentity(subMenuPaper)
+	AddInteractionMenu(subMenuAction)
 	if Myjob == "Police" then
 		MainJobsMenu(SubMenuJobs)
 	end
@@ -159,6 +185,30 @@ function AskIdentity(menu)
 			local ClosestPlayerSID = GetPlayerServerId(GetClosestPlayer())
 			TriggerServerEvent("vMenuIdentity:ShowServerPeopleID", ClosestPlayerSID)
 			submenu.SubMenu:Visible(not submenu.SubMenu:Visible())
+        end
+    end
+end
+
+function AddInteractionMenu(menu)
+	local submenu = _menuPool:AddSubMenu(menu.SubMenu, "Menu Action", "")
+    local dropWeaponItem = NativeUI.CreateColouredItem("Jeter votre arme", "", Colours.Red, Colours.Red)
+	submenu.SubMenu:AddItem(dropWeaponItem)
+
+    submenu.SubMenu.OnItemSelect = function(sender, item, index)
+		if item == dropWeaponItem then
+			if not IsPedInAnyVehicle(ped, true) and IsPedArmed(ped, 1) or IsPedArmed(ped, 2) or IsPedArmed(ped, 3) or IsPedArmed(ped, 4) or IsPedArmed(ped, 5) or IsPedArmed(ped, 6) or IsPedArmed(ped, 7) then
+				local ped = PlayerPedId()
+				local wep = GetSelectedPedWeapon(ped)
+				SetPedDropsWeaponsWhenDead(ped, true)
+				RequestAnimDict("mp_weapon_drop")
+				TaskPlayAnim(ped, "mp_weapon_drop", "drop_bh", 8.0, 2.0, -1, 0, 2.0, 0, 0, 0 )
+				SetPedDropsInventoryWeapon(ped, wep, 0, 2.0, 0, -1)
+				SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+				Notify("~h~Arme ~g~jeter ~w~ au sol.")
+				submenu.SubMenu:Visible(not submenu.SubMenu:Visible())
+			else
+				Notify("~r~Aucun arme sur vous !")
+			end
         end
     end
 end

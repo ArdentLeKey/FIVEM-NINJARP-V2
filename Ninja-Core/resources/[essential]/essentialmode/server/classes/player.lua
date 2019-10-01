@@ -3,7 +3,7 @@
 -- NO TOUCHY, IF SOMETHING IS WRONG CONTACT KANERSPS! --
 -- NO TOUCHY, IF SOMETHING IS WRONG CONTACT KANERSPS! --
 
-function CreatePlayer(source, permission_level, money, bank, license, group, roles)
+function CreatePlayer(source, permission_level, money, bank, license, group)
 	local self = {}
 
 	self.source = source
@@ -16,7 +16,6 @@ function CreatePlayer(source, permission_level, money, bank, license, group, rol
 	self.session = {}
 	self.bankDisplayed = true
 	self.moneyDisplayed = true
-	self.roles = stringsplit(roles, "|")
 
 	-- FXServer <3
 	ExecuteCommand('add_principal license.' .. self.license .. " group." .. self.group)
@@ -203,37 +202,6 @@ function CreatePlayer(source, permission_level, money, bank, license, group, rol
 		end
 
 		Users[self.source] = rTable
-	end
-
-	rTable.hasRole = function(role)
-		for k,v in ipairs(self.roles)do
-			if v == role then
-				return true
-			end
-		end
-		return false
-	end
-
-	rTable.giveRole = function(role)
-		for k,v in pairs(self.roles)do
-			if v == role then
-				print("User (" .. GetPlayerName(source) .. ") already has this role")
-				return
-			end
-		end
-
-		self.roles[#self.roles + 1] = role
-		db.updateUser(self.license, {roles = table.concat(self.roles, "|")}, function()end)
-	end
-
-	rTable.removeRole = function(role)
-		for k,v in pairs(self.roles)do
-			if v == role then
-				table.remove(self.roles, k)
-			end
-		end
-
-		db.updateUser(self.license, {roles = table.concat(self.roles, "|")}, function()end)
 	end
 
 	return rTable

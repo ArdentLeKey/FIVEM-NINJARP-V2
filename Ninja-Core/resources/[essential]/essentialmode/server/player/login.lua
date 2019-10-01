@@ -1,16 +1,13 @@
--- Loads the user when called, only ever needs to get called once
 function LoadUser(license, source, new, licenseNotRequired)
 	local Source = source
 	db.retrieveUser(license, function(user)
 		if user.license or licenseNotRequired then
 			-- Creates the player class for OOP imitation and then sets a var to say which idType was used (This isn't relevant anymore)
-			Users[source] = CreatePlayer(source, user.permission_level, user.money, user.bank, user.license, user.group, user.roles or "")
+			Users[source] = CreatePlayer(source, user.permission_level, user.money, user.bank, user.license, user.group)
 			Users[Source].setSessionVar('idType', 'license')
 			
 			-- Tells other resources that a player has loaded
 			TriggerEvent('es:playerLoaded', Source, Users[Source])
-
-			log('User (' .. license .. ') loaded')
 
 			-- Sets a decorator on the client if enabled, allows some cool stuff on the client see: https://runtime.fivem.net/doc/natives/#_0xA06C969B02A97298
 			if(settings.defaultSettings.enableRankDecorators ~= "false")then

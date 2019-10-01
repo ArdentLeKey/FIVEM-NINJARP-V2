@@ -8,5 +8,6 @@ server_scripts {
 
 client_scripts {
     'utils/screens.lua',
-    'client/spawn.lua'
+    'client/spawn.lua',
+    'client/idle.lua'
 }

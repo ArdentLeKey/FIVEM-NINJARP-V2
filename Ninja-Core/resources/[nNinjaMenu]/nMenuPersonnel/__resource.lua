@@ -2,7 +2,8 @@ resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 server_scripts {
 	'@mysql-async/lib/MySQL.lua',
-    'server/main.lua'
+    'server/main.lua',
+    'inventory/server.lua'
 }
 
 client_scripts {
@@ -43,6 +44,8 @@ client_scripts {
 }
 
 client_scripts {
-	"client/client.lua",
+    "inventory/gui.lua",
+    "inventory/client.lua",
+    "client/client.lua",
     'client/menu.lua'
 }
