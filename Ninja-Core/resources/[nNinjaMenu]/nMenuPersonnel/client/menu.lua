@@ -14,7 +14,232 @@ AddEventHandler('vMenuNotif:showNotification', function(msg)
 	Notify(msg)
 end)
 
+--------------------------------------------------------------------------------------
 
+
+ ----------------------||Inventaire||--------------------
+ITEMS = {}
+local playerdead = false -- Don't touch this !
+local OpenKey = 289 -- F2
+local maxCapacity = 101
+local WaterID = 1 -- Set this in your Data Base
+local FoodID = 2 -- Set this in your Data Base
+
+
+RegisterNetEvent("item:reset")
+RegisterNetEvent("item:getItems")
+RegisterNetEvent("item:updateQuantity")
+RegisterNetEvent("item:sell")
+RegisterNetEvent("gui:getItems")
+RegisterNetEvent("player:sellItem")
+
+
+AddEventHandler("playerSpawned", function()
+    RegisterNetEvent("item:getItems")
+    TriggerServerEvent("item:getItems")
+end)
+
+
+RegisterNetEvent('nMenuNotif:player')
+AddEventHandler('nMenuNotif:player', function(msg)
+	ShowNotification(msg)
+end)
+
+function ShowNotification( text )
+    SetNotificationTextEntry( "STRING" )
+    AddTextComponentString( text )
+    DrawNotification( false, false )
+end
+
+AddEventHandler("gui:getItems", function(THEITEMS)
+    ITEMS = {}
+    ITEMS = THEITEMS
+end)
+
+function getPods()
+    local pods = 0
+    for _, v in pairs(ITEMS) do
+        pods = pods + v.quantity
+    end
+    return pods
+end
+
+function notFull()
+    local pods = 0
+    for _, v in pairs(ITEMS) do
+        pods = pods + v.quantity
+    end
+    if (pods < (maxCapacity-1)) then return true end
+end
+
+
+RegisterNetEvent("player:receiveItem")
+AddEventHandler("player:receiveItem", function(item, quantity)
+	if (getPods() + quantity < maxCapacity) then
+		item = tonumber(item)
+		if (ITEMS[item] == nil) then
+			new(item, quantity)
+		else
+			add({ item, quantity })
+		end
+	end
+end)
+
+RegisterNetEvent("player:looseItem")
+AddEventHandler("player:looseItem", function(item, quantity)
+    item = tonumber(item)
+    if (ITEMS[item].quantity >= quantity) then
+        delete({ item, quantity })
+    else
+        Notify("Vous n'avez pas assez de ressources")
+    end
+end)
+
+
+AddEventHandler("player:sellItem", function(item, price)
+    item = tonumber(item)
+    if (ITEMS[item].quantity > 0) then
+        sell(item, price)
+    end
+end)
+
+RegisterNetEvent("farm:updateQuantity")
+AddEventHandler("farm:updateQuantity", function(qty, id)
+    ITEMS[id].quantity = qty
+end)
+
+AddEventHandler("player:resetItem", function(item)
+    item = tonumber(item)
+    delete({ item, ITEMS[item].quantity })
+end)
+
+
+function sell(itemId, price)
+    local item = ITEMS[itemId]
+    item.quantity = item.quantity - 1
+    TriggerServerEvent("item:sell", itemId, item.quantity, price)
+end
+
+function delete(arg)
+    local itemId = tonumber(arg[1])
+    local qty = arg[2]
+    local item = ITEMS[itemId]
+    item.quantity = item.quantity - qty
+    TriggerServerEvent("item:updateQuantity", item.quantity, itemId)
+    TriggerEvent("farm:updateQuantity", item.quantity, itemId)
+end
+
+function add(arg)
+    local itemId = tonumber(arg[1])
+    local qty = arg[2]
+    local item = ITEMS[itemId]
+    item.quantity = item.quantity + qty
+    TriggerServerEvent("item:updateQuantity", item.quantity, itemId)
+    TriggerEvent("farm:updateQuantity", item.quantity, itemId)
+end
+
+function giveMoney()
+    local playerNear = getNearPlayer()
+    if playerNear then
+        DisplayOnscreenKeyboard(1, "", "", "", "", "", "", 30)
+        while (UpdateOnscreenKeyboard() == 0) do
+            DisableAllControlActions(0);
+            Wait(0);
+        end
+        if (GetOnscreenKeyboardResult()) then
+            local res = tonumber(GetOnscreenKeyboardResult())
+            if res > 0 then
+                TriggerServerEvent("player:swapMoney", res, GetPlayerServerId(playerNear))
+            end
+        end
+    end
+end
+
+function new(item, quantity)
+    RegisterNetEvent("item:setItem")
+    TriggerServerEvent("item:setItem", item, quantity)
+    TriggerServerEvent("item:getItems")
+end
+
+
+
+function getQuantity(itemId)
+    return ITEMS[tonumber(itemId)].quantity
+end
+
+
+
+AddEventHandler("player:getQuantity", function(item, call)
+     call({count=getQuantity(item)})
+end)
+
+
+function DisplayHelpText(str)
+    SetTextComponentFormat("STRING")
+    AddTextComponentString(str)
+    DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+end
+
+
+
+function Notify(text)
+    SetNotificationTextEntry('STRING')
+    AddTextComponentString(text)
+    DrawNotification(false, true)
+end
+
+
+function use(itemId, quantity)
+    if itemId == FoodID then
+	
+        TriggerEvent("food:vdrink", 5) -- Change this with your drink script
+		
+    elseif itemId == WaterID then
+	
+        TriggerEvent("food:veat", 2) -- Change this with your food script
+		
+    end
+    TriggerEvent('player:looseItem', itemId, quantity)
+end
+
+function PlayerIsDead()
+    if playerdead then
+        return
+    end
+    TriggerServerEvent("item:reset")
+end
+
+function getPlayers()
+    local playerList = {}
+    for i = 0, 32 do
+        local player = GetPlayerFromServerId(i)
+        if NetworkIsPlayerActive(player) then
+            table.insert(playerList, player)
+        end
+    end
+    return playerList
+end
+
+function getNearPlayer()
+    local players = getPlayers()
+    local pos = GetEntityCoords(GetPlayerPed(-1))
+    local pos2
+    local distance
+    local minDistance = 3
+    local playerNear
+    for _, player in pairs(players) do
+        pos2 = GetEntityCoords(GetPlayerPed(player))
+        distance = GetDistanceBetweenCoords(pos["x"], pos["y"], pos["z"], pos2["x"], pos2["y"], pos2["z"], true)
+        if (pos ~= pos2 and distance < minDistance) then
+            playerNear = player
+            minDistance = distance
+        end
+    end
+    if (minDistance < 3) then
+        return playerNear
+    end
+end
+---------------------------------------------------------------------------------
 
 --[[
 	local x = 0.50
@@ -150,7 +375,7 @@ end
 
 -----||MENU||-----
 function AddMainMenu(menu)
-
+	subMenuInventory = _menuPool:AddSubMenu(menu, "Inventaire")
 	subMenuPaper = _menuPool:AddSubMenu(menu, "Mon Porteuifeuil", "")
 	subMenuAction = _menuPool:AddSubMenu(menu, "Intéraction", "")
 	SubMenuJobs = _menuPool:AddSubMenu(menu, "Métiers", "")
@@ -163,10 +388,121 @@ function AddMainMenu(menu)
         end
     end
 
+	AddInventoryMenu(subMenuInventory)
 	AskIdentity(subMenuPaper)
 	AddInteractionMenu(subMenuAction)
 	if Myjob == "Police" then
 		MainJobsMenu(SubMenuJobs)
+	end
+end
+
+
+function AddInventoryMenu(menu)
+	local inventorymenu = _menuPool:AddSubMenu(menu.SubMenu, "Menu Inventaire", ""..(getPods() or 0) .. " "..maxCapacity)
+	itemNombre = {}
+	
+	for ind,value in pairs(ITEMS) do
+		SelectedItem = 0
+		if (value.quantity > 0) then
+			SelectedItem = ind
+			for i = 1, 1, 1 do
+				table.insert(itemNombre, i)
+			end
+
+			table.insert(invItem, value)
+
+			invItem[value] = NativeUI.CreateListItem(value.libelle .. " " ..value.quantity, itemNombre, 1)
+			inventorymenu.SubMenu:AddItem(invItem[value])
+		end
+	end
+
+	local useItem = NativeUI.CreateItem("Utiliser", '')
+	itemMenu:AddItem(useItem)
+
+	local giveItem = NativeUI.CreateItem("Donner", '')
+	itemMenu:AddItem(giveItem)
+
+	local dropItem = NativeUI.CreateItem("Jeter", '')
+	dropItem:SetRightBadge(4)
+	itemMenu:AddItem(dropItem)
+
+	function give(item)
+		player, distance = GetClosestPlayer()
+		if(distance ~= -1 and distance < 3) and (IsPedInAnyVehicle(GetPlayerPed(-1), true) == false) then
+			DisplayOnscreenKeyboard(1, "Antal :", "", "", "", "", "", 3)
+			while (UpdateOnscreenKeyboard() == 0) do
+				DisableAllControlActions(0);
+				Wait(0);
+			end
+			if (GetOnscreenKeyboardResult()) then
+				local res = math.ceil(tonumber(GetOnscreenKeyboardResult() or 0))
+	
+				if ( res > 0 and ITEMS[item].quantity - res >= 0) then
+					TriggerServerEvent("player:giveItem", item, ITEMS[item].libelle, res, GetPlayerServerId(player))
+					local ped = GetPlayerPed(-1)
+					if ped then
+						TaskStartScenarioInPlace(ped, "PROP_HUMAN_PARKING_METER", 0, false)
+						Citizen.Wait(1500)
+						ClearPedTasks(GetPlayerPed(-1))
+					end
+					
+				end
+				Menu.hidden = not Menu.hidden
+			end
+		else
+			TriggerEvent("es_freeroam:notify", "CHAR_MP_STRIPCLUB_PR", 1, "Mairie", false, "ingen spiller tæt på en bil")
+			Menu.hidden = not Menu.hidden
+		end
+	end
+
+	
+	inventorymenu.SubMenu.OnListSelect = function(sender, item, index)
+	_menuPool:CloseAllMenus(true)
+	itemMenu:Visible(true)
+	for ind,value in pairs(ITEMS) do
+		if item == invItem[value] then
+				itemMenu.OnItemSelect = function(sender, item, index)
+					if item == useItem then
+						use(ind,itemNombre[i])
+						Notify("~h~Vous avez utilisé ~b~x "..itemNombre[i] .." "..value.libelle)
+						_menuPool:CloseAllMenus(true)
+					elseif item == giveItem then
+						player, distance = GetClosestPlayer()
+						if(distance ~= -1 and distance < 3) then
+							_menuPool:CloseAllMenus(true)
+							DisplayOnscreenKeyboard(true, "", "", "", "", "", "", 64)
+							while UpdateOnscreenKeyboard() == 0 do
+								Wait(0)
+							end
+							local quantityitems = GetOnscreenKeyboardResult()
+							if tonumber(quantityitems) == nil or tonumber(quantityitems) > value.quantity or tonumber(quantityitems) <= 0 then
+								Notify("Vous ne pouvez pas donner + ou - de ce que vous avez sur vous !")
+								return
+							end
+							total_items = tonumber(quantityitems)
+							item_name = ITEMS[tonumber(ind)].libelle
+							if ITEMS[tonumber(ind)].quantity >= total_items and total_items > 0 then
+								TriggerServerEvent('player:giveItem',GetPlayerServerId(player),ind,item_name,total_items)
+							else
+								Notify("~r~Vous n'avez pas assez d'items")
+							end
+							--TriggerServerEvent('havanna:GiveItem',ClosestPlayerSID,selecteditemid,item_name,total_items)
+						else
+							Notify("Aucune personne ne se situe devant vous !")
+						end
+					elseif item == dropItem then
+						_menuPool:CloseAllMenus(true)
+						DisplayOnscreenKeyboard(true, "", "", "", "", "", "", 30)
+						while UpdateOnscreenKeyboard() == 0 do
+							Wait(0)
+						end
+						local quantityitems = GetOnscreenKeyboardResult()
+						TriggerEvent('player:looseItem',ind,tonumber(quantityitems))
+						Notify("~h~Vous avez jeter ~b~x "..quantityitems .." "..value.libelle)
+					end
+				end
+			end
+		end
 	end
 end
 
@@ -196,25 +532,38 @@ function AddInteractionMenu(menu)
 
     submenu.SubMenu.OnItemSelect = function(sender, item, index)
 		if item == dropWeaponItem then
-			if not IsPedInAnyVehicle(ped, true) and IsPedArmed(ped, 1) or IsPedArmed(ped, 2) or IsPedArmed(ped, 3) or IsPedArmed(ped, 4) or IsPedArmed(ped, 5) or IsPedArmed(ped, 6) or IsPedArmed(ped, 7) then
-				local ped = PlayerPedId()
-				local wep = GetSelectedPedWeapon(ped)
-				SetPedDropsWeaponsWhenDead(ped, true)
-				RequestAnimDict("mp_weapon_drop")
-				TaskPlayAnim(ped, "mp_weapon_drop", "drop_bh", 8.0, 2.0, -1, 0, 2.0, 0, 0, 0 )
-				SetPedDropsInventoryWeapon(ped, wep, 0, 2.0, 0, -1)
-				SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+			local ped = PlayerPedId()
+			local wep = GetSelectedPedWeapon(ped)
+
+			if (IsPedArmed(ped, 7)) then
+				ClearPedTasks(ped)
+				playAnim("weapons@first_person@aim_rng@generic@projectile@sticky_bomb@", "plant_floor")
+				Citizen.Wait(1000)
+				SetPedDropsInventoryWeapon(ped, GetSelectedPedWeapon(ped), 0.0, 0.6, -0.9, 30)
+				ClearPedTasks(ped)
 				Notify("~h~Arme ~g~jeter ~w~ au sol.")
-				submenu.SubMenu:Visible(not submenu.SubMenu:Visible())
 			else
-				Notify("~r~Aucun arme sur vous !")
+				Notify("~r~Aucune arme sur vous !")
 			end
         end
     end
 end
 
-function MainJobsMenu(menu)
+function playAnim(dict, name)
+    local ped = GetPlayerPed(-1)
+    loadAnimDict(dict)
+    TaskPlayAnim(ped, dict, name, 8.0, 1.0, -1, 2, 0, 0, 0, 0)
+end
 
+function loadAnimDict(dict)
+    while not HasAnimDictLoaded(dict) do
+        RequestAnimDict(dict)
+        Citizen.Wait(5)
+    end
+    return true
+end
+
+function MainJobsMenu(menu)
 	local submenu = _menuPool:AddSubMenu(menu.SubMenu, "Intéraction Citoyen", "")
 	local subTravau = _menuPool:AddSubMenu(menu.SubMenu, "Gestion Employé", "")
 

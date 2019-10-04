@@ -20,15 +20,9 @@ AddEventHandler('playerSpawned', function(spawn)
 	end
 end)
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1000)
-		NetworkOverrideClockTime(NetworkGetServerTime())
-	end
-end)
-
+--[[
 -- AFK Kick Time Limit (in seconds)
-secondsUntilKick = 350
+secondsUntilKick = 6000
 
 -- Warn players if 3/4 of the Time Limit ran up
 kickWarning = true
@@ -52,7 +46,7 @@ Citizen.CreateThread(function()
 			prevPos = currentPos
 		end
 	end
-end)
+end)]]
 
 Citizen.CreateThread(function()
 	if not firstTick then		
@@ -60,22 +54,22 @@ Citizen.CreateThread(function()
 			SetEntityVisible(PlayerPedId(), false, 0)
 			SwitchOutPlayer(PlayerPedId(), 32, 1)
 			Wait(3000)
-
 			showLoadingPromt("PCARD_JOIN_GAME", 8000)
 			Wait(1000)		
 		end
 
 		TriggerServerEvent("vCharacter:SpawnCharacter")
-		TriggerServerEvent("vMenuPosition:SpawnPlayerLastPosition")
 		Wait(5000)
 
 		SwitchInPlayer(PlayerPedId())
 		SetEntityVisible(PlayerPedId(), true, 0)
-		Wait(5000)		
+		Wait(5000)
 
 		exports.spawnmanager:setAutoSpawn(false)
 		Wait(2000)
 		firstTick = true
+
+		TriggerServerEvent("vMenuPosition:SpawnPlayerLastPosition")
 
 		playerID = PlayerId()
 		playerName = GetPlayerName(playerID)

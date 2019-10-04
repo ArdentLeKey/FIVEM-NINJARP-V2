@@ -23,7 +23,9 @@ AddEventHandler('es:playerLoaded', function(source)
 	  local source = source
 	  local license = GetPlayerIdentifiers(source)[1]
       local jobId = getJob(license)
-      local nameJoba = nameJob(jobId)
+	  local nameJoba = nameJob(jobId)
+	  
+	  TriggerClientEvent("es:setMoneyDisplay", true)
 	  
 	  TriggerClientEvent("vMenu:UpdateClientjobs", source, nameJoba)
 end)

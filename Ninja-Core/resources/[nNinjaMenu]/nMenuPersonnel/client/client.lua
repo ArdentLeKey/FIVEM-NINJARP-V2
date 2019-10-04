@@ -1,10 +1,11 @@
 --||@SuperCoolNinja.||--
-local playerID = PlayerId()
-local playerName = GetPlayerName(source)
-local playerPed = PlayerPedId()
+itemMenu = nil
+invItem = {}
 _menuPool = NativeUI.CreatePool()
-mainMenu = NativeUI.CreateMenu(playerName,"~b~MENU INTERACTION")
+itemMenu = NativeUI.CreateMenu("Menu Personnel", "Inventaire")
+mainMenu = NativeUI.CreateMenu("Menu Personnel","~b~MENU INTERACTION")
 _menuPool:Add(mainMenu)
+_menuPool:Add(itemMenu)
 
 function PersonalMenu()
     --[[ 
@@ -55,14 +56,21 @@ function PersonalMenu()
                  --ClearPedTasks(ped)
                  isValidGlare = false
                  mainMenu:Clear()
+                 itemMenu:Clear()
  
                  _menuPool:Clear()
                  _menuPool:Remove()
+
+                 invItem = {}
  
                  _menuPool = NativeUI.CreatePool()
+
+                
  
-                  mainMenu = NativeUI.CreateMenu(playerName, "~b~MENU INTERACTION")
+                  mainMenu = NativeUI.CreateMenu("Menu Personnel", "~b~MENU INTERACTION")
+                  itemMenu = NativeUI.CreateMenu("Menu Personnel", "Inventaire")
                  _menuPool:Add(mainMenu)
+                 _menuPool:Add(itemMenu)
              end
          end
          Citizen.Wait(0)
