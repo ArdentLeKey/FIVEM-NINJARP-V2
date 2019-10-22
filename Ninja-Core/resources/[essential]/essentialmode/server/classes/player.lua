@@ -178,6 +178,10 @@ function CreatePlayer(source, permission_level, money, bank, license, group)
 		end
 	end
 
+	rTable.getIdentifier = function(i)
+		return self.license
+	end
+
 	rTable.getGroup = function()
 		return self.group
 	end

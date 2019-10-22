@@ -5,6 +5,10 @@ function LoadUser(license, source, new, licenseNotRequired)
 			-- Creates the player class for OOP imitation and then sets a var to say which idType was used (This isn't relevant anymore)
 			Users[source] = CreatePlayer(source, user.permission_level, user.money, user.bank, user.license, user.group)
 			Users[Source].setSessionVar('idType', 'license')
+
+			
+			TriggerClientEvent('nArgent:DisplayCashValue', Source, user.money)
+			TriggerClientEvent('nArgent:DisplayBankValue', Source, user.bank)
 			
 			-- Tells other resources that a player has loaded
 			TriggerEvent('es:playerLoaded', Source, Users[Source])
@@ -47,6 +51,7 @@ function LoadUser(license, source, new, licenseNotRequired)
 		end
 	end)
 end
+
 
 -- Exported function, same as es:getPlayerFromId
 function getPlayerFromId(id)

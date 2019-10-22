@@ -145,9 +145,9 @@ function UIMenu.New(Title, Subtitle, X, Y, TxtDictionary, TxtName, Heading, R, G
             MultilineFormats = true,
             ScaleWithSafezone = true,
             ResetCursorOnOpen = false,
-            MouseControlsEnabled = true,
-            MouseEdgeEnabled = true,
-            ControlDisablingEnabled = false,
+            MouseControlsEnabled = false,
+            MouseEdgeEnabled = false,
+            ControlDisablingEnabled = true,
             DrawOrder = nil,
             Audio = {
                 Library = "HUD_FRONTEND_DEFAULT_SOUNDSET",
@@ -270,7 +270,12 @@ function UIMenu:DisEnableControls(bool)
     if bool then
         EnableAllControlActions(2)
     else
-        DisableAllControlActions(2)
+        DisableControlAction(0, 140,true) --DESACTIVE CONTROLL B
+        DisableControlAction(0, 172,true) --DESACTIVE CONTROLL HAUT
+        DisableControlAction(0, 0,true) --DESACTIVE CONTROLL VIEW
+        DisableControlAction(0, 24, true) -- Desative Controll Attack
+        DisableControlAction(0, 2, true) -- Look Up and Down
+        DisableControlAction(0, 1, true) --Look Left and Right
     end
     if bool then
         return

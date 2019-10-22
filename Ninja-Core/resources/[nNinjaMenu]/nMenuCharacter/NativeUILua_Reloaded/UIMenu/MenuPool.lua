@@ -42,7 +42,6 @@ function MenuPool:AddSubMenu(Menu, Text, Description, KeepPosition, KeepBanner)
         end
         self:Add(SubMenu)
         Menu:BindMenuToItem(SubMenu, Item)
-        Item:RightLabel(" →")
         return {
             SubMenu = SubMenu,
             Item = Item

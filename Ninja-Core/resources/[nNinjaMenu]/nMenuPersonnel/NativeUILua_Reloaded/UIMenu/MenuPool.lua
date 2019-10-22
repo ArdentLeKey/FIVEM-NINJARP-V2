@@ -193,10 +193,25 @@ end
 ---ProcessMenus
 ---@return nil
 ---@public
+
+local x = 0.49
+local y = 0.48
+local width = 1.1
+local height = 1.1
+
+local function startGlare()
+    scaleform = RequestScaleformMovie("mp_menu_glare")
+    PushScaleformMovieFunction(scaleform, "initScreenLayout")
+    PopScaleformMovieFunctionVoid()
+    DrawScaleformMovie(scaleform, x, y, width, height)
+end
+
 function MenuPool:ProcessMenus()
     self:ProcessControl()
     self:ProcessMouse()
     self:Draw()
+    startGlare()
+    --DrawScaleformMovie(scaleform, x, y, width, height)
 end
 
 ---ProcessControl

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Ninja RP V2</title>				    
+<style type="text/css">
+body { color: #ffffff; background: #000000; }
+</style>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<header>
+</p></div>
+<div id="loading"><p style="position: absolute; right: 20px; bottom: -5px; border:1px; border-style:solid; border-color:#000000; background: #000000; padding: 0.5em; width: 260px; opacity: 0.85;"><font face="verdana" size="4">Chargement en cours</font><font color="#000000">#</font><img src="img/loading.gif" style="width:20px;height:20px;"></p></div>
+<script>
+var slideIndex = 0;
+carousel();
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("infoboxslide");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1} 
+    x[slideIndex-1].style.display = "block"; 
+    setTimeout(carousel, 10000); // Change image every 10 seconds
+}
+</script>
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/jquery.backstretch.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.ajaxchimp.js"></script>
+  <script src="js/lj-safety-first.js"></script>
+  </body>
+</html>

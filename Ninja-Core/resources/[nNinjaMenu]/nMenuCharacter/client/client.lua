@@ -1,9 +1,7 @@
 --||@SuperCoolNinja.||--
-
 _menuPoolChara = NativeUI.CreatePool()
 mainMenuCharacter = NativeUI.CreateMenu("Éditeur de personnage", "~h~NOUVEAU ~b~PERSONNAGE")
 _menuPoolChara:Add(mainMenuCharacter)
-local interior = nil
 
 RegisterNetEvent("vCharacter:OpenCreatorMenu")
 AddEventHandler("vCharacter:OpenCreatorMenu",function()
@@ -24,43 +22,50 @@ function ChangeSkin(skin)
 	end
 	SetPlayerModel(PlayerId(), modelhashed)
 	SetModelAsNoLongerNeeded(modelhashed)
-	TriggerServerEvent("vCharacter:LoadNewCharacter")
+    TriggerServerEvent("vCharacter:LoadNewCharacter")
 end
 
 local firstspawn = 0
 AddEventHandler('playerSpawned', function(spawn)
-	if firstspawn == 0 then
+    if firstspawn == 0 then
+        SetTextChatEnabled(false)
         TriggerServerEvent("vCharacter:SpawnCharacter")
         TriggerServerEvent("vMenuPosition:SpawnPlayerLastPosition")
 		firstspawn = 1
 	end
 end)
 
+local locationP = {
+	{x = -1278.77, y = -3392.19, z = 13.9402},
+}
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+
+        for k in pairs(locationP) do
+            local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
+            local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, locationP[k].x, locationP[k].y, locationP[k].z)
+
+            if dist <= 20 then
+                if GetLastInputMethod(0) then
+                    exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_TALK~ pour la création de votre ~b~perso")
+                else
+                    exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_CELLPHONE_CAMERA_DOF~ pour la création de votre ~b~perso")
+                end
+                
+				if IsControlJustReleased(0, 38) then
+					openIdentityMenu()
+				end
+            end
+        end
+    end
+end)
+
 function EnterCharacterCreator()
-		SetEntityCoordsNoOffset(PlayerPedId(), 403.006225894, -996.8715, -99.00)
-		SetEntityHeading(PlayerPedId(), 182.65637207031)
-
-		interior = GetInteriorAtCoordsWithType(399.9, -998.7, -100.0, "v_mugshot")
-		LoadInterior(interior)
-		while not IsInteriorReady(interior) do
-			Wait(500)
-		end
-
-		cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
-		while not DoesCamExist(cam) do
-			Citizen.Wait(500)
-		end
-
-		if DoesCamExist(cam) then
-			SetCamCoord(cam, 402.7553, -1000.55, -98.48412)
-			SetCamRot(cam, -3.589798, 0.0, -0.276381, 2)
-			SetCamFov(cam, 37.95373)
-
-			RenderScriptCams(true, false, 3000, 1, 0, 0)
-			FreezeEntityPosition(PlayerPedId(), true)
-			DoScreenFadeIn(200)
-			hidehud = true
-		end
+    SetEntityInvincible(PlayerPedId(), true)
+    DoScreenFadeIn(200)
+    hidehud = true
 
     mainMenuCharacter:Visible(not mainMenuCharacter:Visible())
     IsCharacterCreated = true
@@ -95,7 +100,6 @@ function AddHeritageSelection(menu)
         end
 
         Heritage:Index(Mum, Dad)
-       -- SetPedHeadBlendData(PlayerPedId(), 0, math.random(12), 0,math.random(12), Mum, Dad,1.0,1.0,1.0,true)
         SetPedHeadBlendData(PlayerPedId(), Dad, Mum, nil, skinTone * Dad, skinTone * Mum, 1.0, 1.0, skinTone, nil, true)
          while not HasPedHeadBlendFinished(PlayerPedId()) do
             Wait(500)
@@ -115,12 +119,9 @@ function AddHeritageSelection(menu)
        if item == SkintItem then
             skinTone = index
         end
-       -- SetPedHeadBlendData(GetPlayerPed(-1), Dad, Mum, nil, skinTone * Dad, skinTone * Mum, skinTone, Dad * Mum, skinTone, nil, true)
         SetPedHeadBlendData(PlayerPedId(), Dad, Mum, nil, skinTone * Dad, skinTone * Mum, 1.0, 1.0, skinTone, nil, true)
     end
 end
-
-
 
 function AddMenuLocation(menu)
 	local genders = {GetLabelText("FACE_MALE"), GetLabelText("FACE_FEMALE")}
@@ -130,16 +131,12 @@ function AddMenuLocation(menu)
     menu.OnListChange = function(sender, item, index)
         if item == newitem then
     	    SelectedItem = newitem:IndexToItem(index)
-    	    if SelectedItem == GetLabelText("FACE_MALE") then
+            if SelectedItem == GetLabelText("FACE_MALE") then
                 ChangeSkin("mp_m_freemode_01")
                 TriggerServerEvent("vCharacter:UpdateGender","mp_m_freemode_01")
-                SetEntityCoordsNoOffset(PlayerPedId(), 403.006225894, -996.8715, -99.00)
-		        SetEntityHeading(PlayerPedId(), 182.65637207031)
-    	    else
+            else
                 ChangeSkin("mp_f_freemode_01")
                 TriggerServerEvent("vCharacter:UpdateGender","mp_f_freemode_01")
-                SetEntityCoordsNoOffset(PlayerPedId(), 403.006225894, -996.8715, -99.00)
-		        SetEntityHeading(PlayerPedId(), 182.65637207031)
     	    end
     	end
     end
@@ -202,14 +199,8 @@ function AddSaveSelection(menu)
     menu:AddItem(saveItem)
 	
 	menu.OnItemSelect = function(menu, item)
-		if item == saveItem then
-			if DoesCamExist(cam) then
-            	RenderScriptCams(false, false, 3000, 1, 0, 0)
-            	FreezeEntityPosition(PlayerPedId(), false)
-            	DestroyCam(cam, true)
-            end
-            
-            local joinCoords = vector3(-1044.645, -2749.844, 21.36343-1.0)
+        if item == saveItem then
+            SetEntityInvincible(PlayerPedId(), false)
 
             if not IsScreenFadedOut() then
                 DoScreenFadeOut(400)
@@ -218,7 +209,7 @@ function AddSaveSelection(menu)
                 end
             end
 
-        	SetEntityCoords(PlayerPedId(), -1044.645, -2749.844, 21.36343-1.0)
+        	SetEntityCoords(PlayerPedId(), -1044.645, -2749.844, 21.36343-1.0) --Last pos to join
         	SetEntityHeading(PlayerPedId(), 328.147)        	           
             while not HasCollisionLoadedAroundEntity(PlayerPedId()) do
                 Wait(1)
@@ -231,28 +222,18 @@ function AddSaveSelection(menu)
                 DoScreenFadeIn(300)
                 Wait(400)
             end
-
-        	SimulatePlayerInputGait(PlayerId(), 1.0, 8500, 1.0, 1, 0)
         	hidehud = false
 		end
 	end
 end
 
-function Notify(text)
-    SetNotificationTextEntry('STRING')
-    AddTextComponentString(text)
-    DrawNotification(false, false)
-end
-
 RegisterNetEvent("vCharacter:updatePerso")
 AddEventHandler("vCharacter:updatePerso",function(args)
-    Notify("~h~Bienvenue sur ~b~Ninja Rôle-Play ~p~ VII!")
 	skinTone = tonumber(args[1])
 	Dad = tonumber(args[2])
     Mum = tonumber(args[3])
     hairId = tonumber(args[4])
     cheveuxCouleur = tonumber(args[5])
-    --SetPedHeadBlendData(GetPlayerPed(-1), Dad, Mum, 0, skinTone * Dad, skinTone * Mum, skinTone, Dad * Mum, skinTone, 0, true)
     SetPedHeadBlendData(PlayerPedId(), Dad, Mum, nil, skinTone * Dad, skinTone * Mum, 1.0, 1.0, skinTone, nil, true)
     SetPedComponentVariation(PlayerPedId(), 2, hairId, 2, 0)
     SetPedHairColor(GetPlayerPed(-1),cheveuxCouleur-1,0)
@@ -286,14 +267,3 @@ Citizen.CreateThread(function()
         end
     end
 end)
-
---[[ 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        _menuPoolChara:ProcessMenus()
-        if (IsControlJustReleased(0, 54) or IsControlJustReleased(0, 175)) then
-			EnterCharacterCreator()
-        end
-    end
-end)]]

@@ -1,11 +1,4 @@
 --||@SuperCoolNinja.||--
-
-function DisplayHelpAlert(help)
-    BeginTextCommandDisplayHelp("STRING");  
-    AddTextComponentSubstringPlayerName(help);  
-    EndTextCommandDisplayHelp(0, 0, 1, -1);  
-end
-
 local atms = {
     {name="ATM", id=277, x=-386.733, y=6045.953, z=31.501},
     {name="ATM", id=277, x=-284.037, y=6224.385, z=31.187},
@@ -82,31 +75,13 @@ local atms = {
   
   }
   
-  -- Banks
-  local banks = {
-    {name="Banque", id=108, x=150.266, y=-1040.203, z=29.374},
-    {name="Banque", id=108, x=-1212.980, y=-330.841, z=37.787},
-    {name="Banque", id=108, x=-2962.582, y=482.627, z=15.703},
-    {name="Banque", id=108, x=-112.202, y=6469.295, z=31.626},
-    {name="Banque", id=108, x=314.187, y=-278.621, z=54.170},
-    {name="Banque", id=108, x=-351.534, y=-49.529, z=49.042},
-    {name="Banque", id=108, x=241.727, y=220.706, z=106.286},
-  }
-  
   -- Display Map Blips
   Citizen.CreateThread(function()
-      for _, item in pairs(banks) do
-        item.blip = AddBlipForCoord(item.x, item.y, item.z)
-        SetBlipSprite(item.blip, item.id)
-        SetBlipAsShortRange(item.blip, true)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString(item.name)
-        EndTextCommandSetBlipName(item.blip)
-      end
       for _, item in pairs(atms) do
         item.blip = AddBlipForCoord(item.x, item.y, item.z)
         SetBlipSprite(item.blip, item.id)
         SetBlipAsShortRange(item.blip, true)
+        SetBlipColour(item.blip, 25)
         BeginTextCommandSetBlipName("STRING")
         AddTextComponentString(item.name)
         EndTextCommandSetBlipName(item.blip)
@@ -118,45 +93,23 @@ function IsNearATM()
     local ply = GetPlayerPed(-1)
     local plyCoords = GetEntityCoords(ply, 0)
     for _, item in pairs(atms) do
-      local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
-      if(distance <= 1) then
-        return true
-      end
-    end
-  end
-  
-  -- Check if player is in a vehicle
-  function IsInVehicle()
-    local ply = GetPlayerPed(-1)
-    if IsPedSittingInAnyVehicle(ply) then
+    local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
+    if(distance <= 1) then
       return true
-    else
-      return false
     end
   end
-  
-  -- Check if player is near a bank
-  function IsNearBank()
-    local ply = GetPlayerPed(-1)
-    local plyCoords = GetEntityCoords(ply, 0)
-    for _, item in pairs(banks) do
-      local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
-      if(distance <= 2) then
-        return true
-      end
-    end
-  end
+end
 
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         _menuPool:ProcessMenus()
 
-        if IsNearATM() == true or IsNearBank() == true then
+        if IsNearATM() == true then
             if GetLastInputMethod(0) then
-                DisplayHelpAlert("~INPUT_TALK~ pour ~b~intéragir")
+                exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_TALK~ pour ~b~intéragir")
             else
-                DisplayHelpAlert("~INPUT_CELLPHONE_RIGHT~ pour ~b~intéragir")
+                exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_CELLPHONE_RIGHT~ pour ~b~intéragir")
             end
             
             if (IsControlJustReleased(0, 54) or IsControlJustReleased(0, 175)) then
@@ -166,13 +119,16 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent('nMenuNotif:showNotification')
-AddEventHandler('nMenuNotif:showNotification', function(msg)
-	ShowNotification(msg)
+RegisterNetEvent("nArgent:DisplayCashValue")
+AddEventHandler("nArgent:DisplayCashValue", function(value)
+	StatSetInt("MP0_WALLET_BALANCE", value, true)
+	ShowHudComponentThisFrame(4)
+	CancelEvent()
 end)
 
-function ShowNotification(text)
-    SetNotificationTextEntry( "STRING" )
-    AddTextComponentString( text )
-    DrawNotification( false, false )
-end
+RegisterNetEvent("nArgent:DisplayBankValue")
+AddEventHandler("nArgent:DisplayBankValue", function(value)
+	StatSetInt("BANK_BALANCE", value, true)
+	ShowHudComponentThisFrame(3)	
+	CancelEvent()
+end)

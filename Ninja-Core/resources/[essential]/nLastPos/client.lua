@@ -1,13 +1,6 @@
 local AutoSaveEnabled = true
 local TimerAutoSave = 35000 
 
---Notification joueur
-function Notify(text)
-    SetNotificationTextEntry('STRING')
-    AddTextComponentString(text)
-    DrawNotification(false, true)
-end
-
 function RequestToSave()
 	LastPosX, LastPosY, LastPosZ = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
 	TriggerServerEvent("vMenuPosition:SavePos", LastPosX , LastPosY , LastPosZ)
@@ -28,7 +21,7 @@ RegisterNetEvent("vMenuPosition:LastPostClient")
 AddEventHandler("vMenuPosition:LastPostClient", function(PosX, PosY, PosZ)
 	SetEntityCoords(GetPlayerPed(-1), PosX, PosY, PosZ, 1, 0, 0, 1)
 	if not origin then
-		Notify("~h~Vous voici à votre ~g~dernière position")
+		TriggerEvent("nMenuNotif:welcomeNotification")
     end
 	Saver()
 end)

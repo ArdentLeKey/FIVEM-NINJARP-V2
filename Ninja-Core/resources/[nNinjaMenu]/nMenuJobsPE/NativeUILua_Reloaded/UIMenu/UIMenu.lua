@@ -74,7 +74,7 @@ function UIMenu.New(Title, Subtitle, X, Y, TxtDictionary, TxtName, Heading, R, G
     local _UIMenu = {
         Logo = Sprite.New(TxtDictionary, TxtName, 0 + X, 0 + Y, 431, 107, Heading, R, G, B, A),
         Banner = nil,
-        Title = UIResText.New(Title, 215 + X, 20 + Y, 1.15, 255, 255, 255, 255, 1, 1, 0),
+        Title = UIResText.New(Title, 0.5 + X, 0.5 + Y, 1.0, 255, 255, 255, 255, 0, 1, 0),
         BetterSize = true,
         Subtitle = { ExtraY = 0 },
         WidthOffset = 0,

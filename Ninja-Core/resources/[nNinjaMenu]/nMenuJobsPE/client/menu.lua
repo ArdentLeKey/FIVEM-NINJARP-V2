@@ -14,10 +14,12 @@ function AddMenuJobMenu(menu)
 
 		--------------||EVENT AUTRES||----------------
 		local chome = NativeUI.CreateItem("Chômage", "")
-		local testJob = NativeUI.CreateItem("Test", "")
+		local testJob = NativeUI.CreateItem("Police", "")
+		local ambuItem = NativeUI.CreateItem("Ambulancier", "")
 		
 		submenu.SubMenu:AddItem(chome)
 		submenu.SubMenu:AddItem(testJob)
+		submenu.SubMenu:AddItem(ambuItem)
 
 		--------------||Selection LISTE JOBS||----------------
 		submenu.SubMenu.OnItemSelect = function(menu, item)
@@ -26,6 +28,10 @@ function AddMenuJobMenu(menu)
 			TriggerServerEvent("vMenu:UpdateServerjobs", 1)
 		elseif item == testJob then
 			TriggerServerEvent("vMenu:UpdateServerjobs", 2)
+			TriggerServerEvent("vPolice:OnJoin")
+		elseif item == ambuItem then
+			TriggerServerEvent("vMenu:UpdateServerjobs", 3)
+			TriggerServerEvent("nMedics:OnJoin")
 		end
 	end
 end

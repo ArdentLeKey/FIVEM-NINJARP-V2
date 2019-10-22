@@ -3,7 +3,7 @@ RegisterServerEvent('vMenuIdentity:ShowServerMeID')
 AddEventHandler('vMenuIdentity:ShowServerMeID', function()
 	local player = GetPlayerIdentifiers(source)[1]
 	local source = source	
-	local result = MySQL.Sync.fetchAll("SELECT job, nom, prenom FROM users WHERE license = @license", {['@license'] = player})
+	local result = MySQL.Sync.fetchAll("SELECT job, nom, prenom, age FROM users WHERE license = @license", {['@license'] = player})
 	TriggerClientEvent('vMenuIdentity:ShowClientIDCard', source, result)
 end)
 
@@ -11,7 +11,7 @@ RegisterServerEvent('vMenuIdentity:ShowServerPeopleID')
 AddEventHandler('vMenuIdentity:ShowServerPeopleID', function(NearestPlayerSID)
 	local player = GetPlayerIdentifiers(source)[1]
 	local source = source	
-	local result = MySQL.Sync.fetchAll("SELECT job, nom, prenom FROM users WHERE license = @license", {['@license'] = player})
+	local result = MySQL.Sync.fetchAll("SELECT job, nom, prenom, age FROM users WHERE license = @license", {['@license'] = player})
 	if NearestPlayerSID ~= 0 then
 		TriggerClientEvent('vMenuIdentity:ShowClientIDCard', NearestPlayerSID, result)
 		TriggerClientEvent('vMenuNotif:showNotification', NearestPlayerSID, "Une personne vous montre son identité.")
@@ -19,3 +19,165 @@ AddEventHandler('vMenuIdentity:ShowServerPeopleID', function(NearestPlayerSID)
 		TriggerClientEvent('vMenuNotif:showNotification', source, "Aucune personne devant vous")
 	end
 end)
+
+RegisterServerEvent("nPolice:Sfouille")
+AddEventHandler('nPolice:Sfouille', function(NearestPlayerSID)
+	local source = source
+	items = {}
+	local targetid = getPlayerID(NearestPlayerSID)
+	local result = MySQL.Sync.fetchAll("SELECT quantity,libelle,item_id FROM user_inventory JOIN items ON `user_inventory`.`item_id` = `items`.`id` WHERE license = @username", { ['@username'] = targetid})
+	if (result) then
+		for _, v in ipairs(result) do
+			items[tonumber(v.item_id)] = { ["quantity"] = v.quantity, ["libelle"] = v.libelle }
+		end
+	end
+	TriggerClientEvent('nPolice:Cfouilleweapons', NearestPlayerSID, source)
+	TriggerClientEvent('nPolice:Cfouille', source, NearestPlayerSID, items)
+	TriggerClientEvent('vMenuNotif:showNotification', NearestPlayerSID, "Une personne vous fouille.")
+end)
+
+
+RegisterServerEvent("nPolice:sfouilleweapons")
+AddEventHandler('nPolice:sfouilleweapons', function(NearestPlayerSID, weapons)
+	TriggerClientEvent('vMenuNotif:showNotification', NearestPlayerSID,"Armes trouvé: " ..weapons)
+end)
+
+-----------||Inventaire||-----------
+local items = {}
+RegisterServerEvent("item:getItems")
+AddEventHandler("item:getItems", function()
+	items = {}
+	local source = source	
+	local player = GetPlayerIdentifiers(source)[1]
+	local result = MySQL.Sync.fetchAll("SELECT * FROM user_inventory JOIN items ON `user_inventory`.`item_id` = `items`.`id` WHERE license=@username", {['@username'] = player})
+	if (result) then
+		for k,v in ipairs(result) do
+			t = { ["quantity"] = v.quantity, ["libelle"] = v.libelle }
+			items[v.item_id] = t
+		end
+	end
+	TriggerClientEvent("gui:getItems", source, items)
+end)
+
+RegisterServerEvent("item:setItem")
+AddEventHandler("item:setItem", function(item, quantity)
+	local source = source	
+	local player = GetPlayerIdentifiers(source)[1]
+	MySQL.Async.fetchAll("SELECT * FROM user_inventory WHERE license = @username AND item_id = @item", {['@username'] = player, ['@item'] = item}, function(result)
+		if(result[1] ~= nil) then
+			MySQL.Async.execute("UPDATE user_inventory SET `quantity` = @quantity WHERE `license` = @username AND `item_id` = @item", { ['@username'] = player, ['@item'] = item, ['@quantity'] = quantity})
+		else
+			MySQL.Async.execute("INSERT INTO user_inventory (`license`, `item_id`, `quantity`) VALUES (@player, @item, @quantity)", { ['@player'] = player, ['@item'] = item, ['@quantity'] = quantity })
+		end
+	end)
+end)
+
+RegisterServerEvent("item:reset")
+AddEventHandler("item:reset", function()
+	local source = source	
+	local player = GetPlayerIdentifiers(source)[1]
+	MySQL.Sync.execute("UPDATE user_inventory SET quantity=@quantity WHERE license=@username", {['@username'] = player, ['@quantity'] = 0})
+	TriggerClientEvent("nInventaire:ClearDeadBody", source)
+end)
+
+RegisterServerEvent("item:updateQuantity")
+AddEventHandler("item:updateQuantity", function(quantity, id)
+	local source = source	
+	local player = GetPlayerIdentifiers(source)[1]
+	MySQL.Sync.execute("UPDATE user_inventory SET quantity=@quantity WHERE license=@username AND item_id=@id", {['@username'] = player, ['@quantity'] = tonumber(quantity), ['@id'] = tonumber(id)})
+end)
+
+
+RegisterServerEvent("item:sell")
+AddEventHandler("item:sell", function(id, quantity, price)
+	local source = source	
+	local player = GetPlayerIdentifiers(source)[1]
+	MySQL.Sync.execute("UPDATE user_inventory SET quantity=@quantity WHERE license=@username AND item_id=@id", {['@username'] = player, ['@quantity'] = tonumber(quantity), ['@id'] = tonumber(id)})
+	player.addMoney(tonumber(price))
+end)
+
+
+RegisterServerEvent('nArgent:sDonner')
+AddEventHandler('nArgent:sDonner', function(toPlayer, amount)
+	local warning = ""
+	local source = source
+	if (toPlayer ~= nil and tonumber(amount) > 0) then
+		fromPlayer = tonumber(source)
+		toPlayer = tonumber(toPlayer)
+		amount = tonumber(amount)
+		TriggerClientEvent('bank:givecash', source, toPlayer, amount)
+	else
+		TriggerClientEvent('nMenuNotif:player', source, "Veuillez entrer une valeur numérique !")
+		return false
+	end
+end)
+
+RegisterServerEvent('bank:givecash')
+AddEventHandler('bank:givecash', function(toPlayer, amount)
+	local source = source
+	TriggerEvent('es:getPlayerFromId', source, function(user)
+		if (tonumber(user.getMoney()) >= tonumber(amount)) then
+			user.removeMoney(amount)
+			TriggerEvent('es:getPlayerFromId', toPlayer, function(recipient)
+				recipient.addMoney(amount)
+				TriggerClientEvent('nMenuNotif:player', source, "Vous avez donner "..amount.."~g~$ à "..toPlayer)
+				TriggerClientEvent('nMenuNotif:player', toPlayer, "Vous avez reçu "..amount.."~g~$ de "..source)
+			end)
+		else
+			if (tonumber(user.getMoney()) < tonumber(amount)) then
+				TriggerClientEvent('nMenuNotif:player', source, "Pas assez d'argent!")
+        		CancelEvent()
+			end
+		end
+	end)
+end)
+
+RegisterServerEvent("player:giveItem")
+AddEventHandler("player:giveItem", function(NearestPlayerSID, item, item_name, quantity)
+    local mysource = source
+    local player = getPlayerID(mysource)
+    local targetid = getPlayerID(NearestPlayerSID)
+    local quantity = math.floor(tonumber(quantity))
+    MySQL.Async.fetchScalar("SELECT SUM(quantity) FROM user_inventory WHERE license = @username", { ['@username'] = targetid }, function(result)
+        if (result + quantity < 101) then
+			TriggerClientEvent("player:looseItem", mysource, item, quantity)
+			TriggerClientEvent("player:receiveItem", NearestPlayerSID, item, quantity)
+			TriggerClientEvent('nMenuNotif:player', mysource, "Vous avez donné ~b~" .. quantity .. "~s~ ~g~" .. item_name .. "~s~ à " .. GetPlayerName(NearestPlayerSID))
+			TriggerClientEvent('nMenuNotif:player', NearestPlayerSID, "Vous avez reçu ~b~" .. quantity .. "~s~ ~g~" .. item_name .. "~s~ de " .. GetPlayerName(mysource))
+		else
+			TriggerClientEvent('nMenuNotif:player', mysource, "Cette Personne ne peut pas transporter plus d'item.")
+            TriggerClientEvent('nMenuNotif:player', NearestPlayerSID, "Vous ne pouvez pas porter plus d'item sur vous ! ~b~")
+        end
+    end)
+end)
+
+-----------------||ANIMATION HOTAGE SYNCRHO||-----------------
+RegisterServerEvent('cmg3_animations:sync')
+AddEventHandler('cmg3_animations:sync', function(target, animations, attach)
+	TriggerClientEvent('cmg3_animations:syncTarget', target, source, animations.target, attach)
+	TriggerClientEvent('cmg3_animations:syncMe', source, animations.source)
+end)
+
+RegisterServerEvent('cmg3_animations:stop')
+AddEventHandler('cmg3_animations:stop', function(targetSrc)
+	TriggerClientEvent('cmg3_animations:cl_stop', targetSrc)
+end)
+
+
+-----------------||MEDICS||-----------------
+RegisterServerEvent('nMedics:ShealHim')
+AddEventHandler('nMedics:ShealHim', function(NearestPlayerSID)
+	TriggerClientEvent('nMedics:CHealPlayer',NearestPlayerSID)
+end)
+
+function getPlayerID(source)
+    local identifiers = GetPlayerIdentifiers(source)
+    local player = getIdentifiant(identifiers)
+    return player
+end
+
+function getIdentifiant(id)
+    for _, v in ipairs(id) do
+        return v
+    end
+end
