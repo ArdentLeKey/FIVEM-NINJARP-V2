@@ -22,14 +22,16 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
+  `isUsable` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Listage des données de la table essentialmode.items : ~2 rows (environ)
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` (`id`, `libelle`) VALUES
-	(1, 'Eau'),
-	(2, 'Pain');
+INSERT INTO `items` (`id`, `libelle`, `isUsable`) VALUES
+	(1, 'Eau', 1),
+	(2, 'Pain', 1),
+	(3, 'phone', 0);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. jobs
@@ -40,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
   `salary` int(11) NOT NULL DEFAULT 500
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Listage des données de la table essentialmode.jobs : ~2 rows (environ)
+-- Listage des données de la table essentialmode.jobs : ~3 rows (environ)
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
 INSERT INTO `jobs` (`job_id`, `job_name`, `salary`) VALUES
 	(1, 'Chomeur', 300),
@@ -55,10 +57,8 @@ CREATE TABLE IF NOT EXISTS `medics` (
   `rank` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table essentialmode.medics : ~1 rows (environ)
+-- Listage des données de la table essentialmode.medics : ~0 rows (environ)
 /*!40000 ALTER TABLE `medics` DISABLE KEYS */;
-INSERT INTO `medics` (`license`, `rank`) VALUES
-	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 1);
 /*!40000 ALTER TABLE `medics` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. outfits
@@ -103,22 +103,10 @@ CREATE TABLE IF NOT EXISTS `phone_calls` (
   `time` timestamp NOT NULL DEFAULT current_timestamp(),
   `accepts` int(11) NOT NULL COMMENT 'Appels accepter ou pas',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Listage des données de la table essentialmode.phone_calls : ~11 rows (environ)
+-- Listage des données de la table essentialmode.phone_calls : ~0 rows (environ)
 /*!40000 ALTER TABLE `phone_calls` DISABLE KEYS */;
-INSERT INTO `phone_calls` (`id`, `owner`, `num`, `incoming`, `time`, `accepts`) VALUES
-	(1, '273-0914', 'police', 1, '2019-10-21 18:31:46', 0),
-	(2, '273-0914', 'police', 1, '2019-10-21 18:37:36', 0),
-	(3, '273-0914', 'police', 1, '2019-10-21 18:37:53', 0),
-	(4, '273-0914', 'zz', 1, '2019-10-21 21:26:24', 0),
-	(5, '273-0914', '911', 1, '2019-10-21 21:26:30', 0),
-	(6, '273-0914', 'zzzzz', 1, '2019-10-21 21:33:01', 0),
-	(7, '273-0914', '911', 1, '2019-10-21 21:35:36', 0),
-	(8, '273-0914', 'medic', 1, '2019-10-21 21:40:01', 0),
-	(9, '273-0914', '911', 1, '2019-10-21 21:40:41', 0),
-	(10, '273-0914', '912', 1, '2019-10-21 21:48:46', 0),
-	(11, '273-0914', '912', 1, '2019-10-21 22:02:06', 0);
 /*!40000 ALTER TABLE `phone_calls` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. phone_messages
@@ -132,12 +120,10 @@ CREATE TABLE IF NOT EXISTS `phone_messages` (
   `isRead` int(11) NOT NULL DEFAULT 0,
   `owner` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Listage des données de la table essentialmode.phone_messages : 1 rows
+-- Listage des données de la table essentialmode.phone_messages : 0 rows
 /*!40000 ALTER TABLE `phone_messages` DISABLE KEYS */;
-INSERT INTO `phone_messages` (`id`, `transmitter`, `receiver`, `message`, `time`, `isRead`, `owner`) VALUES
-	(1, 'police', '273-0914', 'salut, j\'aurais besoin d\'aide svp', '2019-10-21 18:33:26', 1, 1);
 /*!40000 ALTER TABLE `phone_messages` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. phone_users_contacts
@@ -161,10 +147,8 @@ CREATE TABLE IF NOT EXISTS `police` (
   `rank` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table essentialmode.police : ~1 rows (environ)
+-- Listage des données de la table essentialmode.police : ~0 rows (environ)
 /*!40000 ALTER TABLE `police` DISABLE KEYS */;
-INSERT INTO `police` (`license`, `rank`) VALUES
-	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 1);
 /*!40000 ALTER TABLE `police` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. twitter_accounts
@@ -240,8 +224,40 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Listage des données de la table essentialmode.users : ~1 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`license`, `money`, `bank`, `permission_level`, `group`, `isFirstConnection`, `job`, `nom`, `prenom`, `taille`, `lastpos`, `serverid`, `age`, `isDead`, `phone_number`) VALUES
-	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 500, 15000, 0, 'user', 0, 3, 'Ninja', 'zz', 55, '{381.05792236328, -607.63177490234,  28.910066604614}', 1, 5, 0, '273-0914');
+	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 0, 14300, 0, 'user', 0, 1, 'Ninja', 'Cool', 180, '{-154.07080078125, -307.36431884766,  38.584606170654}', 1, 50, 0, '531-0710');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Listage de la structure de la table essentialmode. users_vetement
+DROP TABLE IF EXISTS `users_vetement`;
+CREATE TABLE IF NOT EXISTS `users_vetement` (
+  `license` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `Haut_Id` int(11) NOT NULL DEFAULT 0,
+  `Haut_Drawable` int(11) NOT NULL DEFAULT 0,
+  `Haut_Couleur` int(11) NOT NULL DEFAULT 0,
+  `Haut_Palette_Id` int(11) NOT NULL DEFAULT 0,
+  `Maillot_Id` int(11) NOT NULL DEFAULT 0,
+  `Maillot_Drawable` int(11) NOT NULL DEFAULT 0,
+  `Maillot_Couleur` int(11) NOT NULL DEFAULT 0,
+  `Maillot_Palette_Id` int(11) NOT NULL DEFAULT 0,
+  `Chaussure_Id` int(11) NOT NULL DEFAULT 0,
+  `Chaussure_Drawable` int(11) NOT NULL DEFAULT 0,
+  `Chaussure_Couleur` int(11) NOT NULL DEFAULT 0,
+  `Chaussure_Palette_Id` int(11) NOT NULL DEFAULT 0,
+  `Pantalon_Id` int(11) NOT NULL DEFAULT 0,
+  `Pantalon_Drawable` int(11) NOT NULL DEFAULT 0,
+  `Pantalon_Couleur` int(11) NOT NULL DEFAULT 0,
+  `Pantalon_Palette_Id` int(11) NOT NULL DEFAULT 0,
+  `Torso_Id` int(11) NOT NULL DEFAULT 0,
+  `Torso_Drawable` int(11) NOT NULL DEFAULT 0,
+  `Torso_Couleur` int(11) NOT NULL DEFAULT 0,
+  `Torso_Palette_Id` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Listage des données de la table essentialmode.users_vetement : ~1 rows (environ)
+/*!40000 ALTER TABLE `users_vetement` DISABLE KEYS */;
+INSERT INTO `users_vetement` (`license`, `Haut_Id`, `Haut_Drawable`, `Haut_Couleur`, `Haut_Palette_Id`, `Maillot_Id`, `Maillot_Drawable`, `Maillot_Couleur`, `Maillot_Palette_Id`, `Chaussure_Id`, `Chaussure_Drawable`, `Chaussure_Couleur`, `Chaussure_Palette_Id`, `Pantalon_Id`, `Pantalon_Drawable`, `Pantalon_Couleur`, `Pantalon_Palette_Id`, `Torso_Id`, `Torso_Drawable`, `Torso_Couleur`, `Torso_Palette_Id`) VALUES
+	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 11, 83, 3, 2, 8, 15, 0, 2, 6, 6, 0, 2, 4, 8, 0, 2, 3, 0, 0, 2);
+/*!40000 ALTER TABLE `users_vetement` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. user_appartement
 DROP TABLE IF EXISTS `user_appartement`;
@@ -272,6 +288,17 @@ CREATE TABLE IF NOT EXISTS `user_inventory` (
 -- Listage des données de la table essentialmode.user_inventory : ~0 rows (environ)
 /*!40000 ALTER TABLE `user_inventory` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_inventory` ENABLE KEYS */;
+
+-- Listage de la structure de la table essentialmode. user_lastcharacter
+DROP TABLE IF EXISTS `user_lastcharacter`;
+CREATE TABLE IF NOT EXISTS `user_lastcharacter` (
+  `license` varchar(255) NOT NULL,
+  `charid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table essentialmode.user_lastcharacter : ~0 rows (environ)
+/*!40000 ALTER TABLE `user_lastcharacter` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_lastcharacter` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

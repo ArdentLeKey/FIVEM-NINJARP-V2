@@ -60,6 +60,17 @@ function MenuPool:Add(Menu)
     end
 end
 
+
+function MenuPool:Clear()
+    self = {
+        Menus = {}
+     }
+end
+
+function MenuPool:Remove()
+    self = nil
+end
+
 ---MouseEdgeEnabled
 ---@param bool boolean
 ---@return nil

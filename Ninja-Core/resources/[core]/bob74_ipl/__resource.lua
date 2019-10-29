@@ -23,19 +23,15 @@ client_script "client.lua"
 client_script "gtav/base.lua"   -- Base IPLs to fix holes
 client_script "gtav/ammunations.lua"
 client_script "gtav/bahama.lua"
-client_script "gtav/floyd.lua"
 client_script "gtav/franklin.lua"
 client_script "gtav/franklin_aunt.lua"
 client_script "gtav/graffitis.lua"
 client_script "gtav/pillbox_hospital.lua"
 client_script "gtav/lester_factory.lua"
-client_script "gtav/michael.lua"
-client_script "gtav/north_yankton.lua"
 client_script "gtav/red_carpet.lua"
 client_script "gtav/simeon.lua"
 client_script "gtav/stripclub.lua"
 client_script "gtav/trevors_trailer.lua"
-client_script "gtav/ufo.lua"
 client_script "gtav/zancudo_gates.lua"
 
 -- GTA Online
@@ -62,19 +58,11 @@ client_script "dlc_high_life/apartment6.lua"
 
 -- DLC Heists
 client_script "dlc_heists/carrier.lua"
-client_script "dlc_heists/yacht.lua"
 
 -- DLC Executives & Other Criminals
 client_script "dlc_executive/apartment1.lua"
 client_script "dlc_executive/apartment2.lua"
 client_script "dlc_executive/apartment3.lua"
-
--- DLC Finance & Felony
-client_script "dlc_finance/office1.lua"
-client_script "dlc_finance/office2.lua"
-client_script "dlc_finance/office3.lua"
-client_script "dlc_finance/office4.lua"
-client_script "dlc_finance/organization.lua"
 
 -- DLC Bikers
 client_script "dlc_bikers/cocaine.lua"
@@ -95,7 +83,6 @@ client_script "dlc_import/vehicle_warehouse.lua"
 
 -- DLC Gunrunning
 client_script "dlc_gunrunning/bunkers.lua"
-client_script "dlc_gunrunning/yacht.lua"
 
 -- DLC Smuggler's Run
 client_script "dlc_smuggler/hangar.lua"

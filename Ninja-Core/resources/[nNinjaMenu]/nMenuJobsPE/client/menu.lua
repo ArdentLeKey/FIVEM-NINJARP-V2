@@ -4,13 +4,13 @@ local Keys = {
 }
 
 _menuPool = NativeUI.CreatePool()
-mainMenu = NativeUI.CreateMenu("Liste d'emplois:", "")
+mainMenu = NativeUI.CreateMenu("Offre Emplois", "")
 _menuPool:Add(mainMenu)
 
 function AddMenuJobMenu(menu)
 
 		--------------||SOUS MENU||----------------
-		local submenu = _menuPool:AddSubMenu(menu, "~h~Liste des emplois", "")
+		local submenu = _menuPool:AddSubMenu(menu, "~h~Emplois disponible", "")
 
 		--------------||EVENT AUTRES||----------------
 		local chome = NativeUI.CreateItem("Chômage", "")

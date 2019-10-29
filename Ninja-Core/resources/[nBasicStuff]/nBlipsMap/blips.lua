@@ -1,5 +1,7 @@
 local blips = {
   {title="Emplois", colour=25, id=480, x=-55.7898, y=6525.02, z=31.4908},
+  {title="Emplois", colour=25, id=480, x = -1083.4, y = -245.893, z = 37.7632},
+  {title="Boutique de vêtement", colour=76, id=73, x = -163.987, y = -309.924, z = 39.7333},
   {title="Police LSPD", colour=29, id=60, x=450.174, y=-992.276, z=30.6896},
   {title="Hôpital", colour=74, id=61, x=336.293, y=-580.483, z=28.7915},
   {title="Superette", colour=81, id=52, x=29.41, y=-1345.01, z=29.5},
@@ -21,6 +23,9 @@ local blips = {
   {title="Superette", colour=81, id=52, x=1391.23, y=3609.29, z=34.98},
   {title="Superette", colour=81, id=52, x=1705.22, y=4925.39, z=42.06},
   {title="Superette", colour=81, id=52, x=1734.64, y=6417.04, z=35.04},
+
+
+ --{title="JOB LIVREUR EXEMPLE", colour=81, id=52, x=-615.472, y=-1630.15, z=33.0105},
 
 -- Clubhouses
 --{title="Club de bikers", colour=4, id=357, x=973.487, y=-101.972, z=74.850},

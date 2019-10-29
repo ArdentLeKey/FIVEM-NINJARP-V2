@@ -23,6 +23,7 @@ function ChangeSkin(skin)
 	SetPlayerModel(PlayerId(), modelhashed)
 	SetModelAsNoLongerNeeded(modelhashed)
     TriggerServerEvent("vCharacter:LoadNewCharacter")
+    TriggerServerEvent("nShopVetement:LoadVetement") 
 end
 
 local firstspawn = 0
@@ -209,7 +210,7 @@ function AddSaveSelection(menu)
                 end
             end
 
-        	SetEntityCoords(PlayerPedId(), -1044.645, -2749.844, 21.36343-1.0) --Last pos to join
+        	SetEntityCoords(PlayerPedId(), -1051.94, -2762.77, 4.63978-1.0) --Last pos to join
         	SetEntityHeading(PlayerPedId(), 328.147)        	           
             while not HasCollisionLoadedAroundEntity(PlayerPedId()) do
                 Wait(1)
@@ -238,7 +239,6 @@ AddEventHandler("vCharacter:updatePerso",function(args)
     SetPedComponentVariation(PlayerPedId(), 2, hairId, 2, 0)
     SetPedHairColor(GetPlayerPed(-1),cheveuxCouleur-1,0)
 end)
-
 
 
 AddMenuLocation(mainMenuCharacter)

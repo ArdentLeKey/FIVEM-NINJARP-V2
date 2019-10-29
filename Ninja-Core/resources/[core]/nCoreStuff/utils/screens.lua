@@ -1,45 +1,4 @@
 local activeWelcomeNot = false
-local warningDisplayed
-warning = nil
-
-SpawnLocations = {
-	{x= -1279.22, y= -3397.74, z= 13.9401},
-	{x= -1285.2, y= -3400.5, z= 13.9426},
-	{x= -1291.19, y= -3399.74, z= 13.9466},
-	{x= -1295.79, y= -3402.46, z= 13.9398},
-	{x= -1299.42, y= -3391.8, z= 13.9402}
-}
-
-function generateSpawn()
-	math.randomseed(GetGameTimer())
-    local keys = {}
-
-    for key, value in pairs(SpawnLocations) do
-        keys[#keys+1] = key
-    end
-   
-    index = keys[math.random(1, #keys)]
-    return SpawnLocations[index]
-end
-
-function showLoadingPromt(label, time)
-    Citizen.CreateThread(function()
-        BeginTextCommandBusyString(tostring(label))
-        EndTextCommandBusyString(3)
-        Citizen.Wait(time)
-        RemoveLoadingPrompt()
-    end)
-end
-
-function SetButtonMessage(text)
-    BeginTextCommandScaleformString("STRING")
-    AddTextComponentScaleform(text)
-    EndTextCommandScaleformString()
-end
-
-function SetButton(ControlButton)
-    N_0xe83a3e3557a56640(ControlButton)
-end
 
 function DisplayHelpAlert(help)
     BeginTextCommandDisplayHelp("STRING");  

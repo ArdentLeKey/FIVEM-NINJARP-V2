@@ -73,7 +73,7 @@ function addidentityMenu(menu)
         if item == nameItem then
             local nameInput = KeyboardInput("Votre Nom :", "", 10)
             if tostring(nameInput) == nil then
-                Notify("Veuillez inserer un nom correct !")
+                exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "", "Veuillez inserer un nombre correct !")
                 return nil
             end
             nameItem:RightLabel(tostring(nameInput))
@@ -81,7 +81,7 @@ function addidentityMenu(menu)
         elseif item == prenItem then
             local prenomInput = KeyboardInput("Votre Prénom :", "", 10)
             if tostring(prenomInput) == nil then
-                Notify("Veuillez inserer un prenom correct !")
+                exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "", "Veuillez inserer un nombre correct !")
                 return nil
             end
             prenItem:RightLabel(tostring(prenomInput))
@@ -89,7 +89,7 @@ function addidentityMenu(menu)
         elseif item == tailleItem then
             local tailleInput = KeyboardInput("Votre Taille :", "", 3)
             if tonumber(tailleInput) == nil then
-                Notify("Veuillez inserer un nombre correct !")
+                exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "", "Veuillez inserer un nombre correct !")
                 return nil
             end
             tailleItem:RightLabel(tailleInput)
@@ -97,7 +97,7 @@ function addidentityMenu(menu)
         elseif item == birdItem then
             local dateInput = KeyboardInput("Âge :", "", 2)
             if tonumber(dateInput) == nil then
-                Notify("Veuillez inserer un nombre correct !")
+                exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "", "Veuillez inserer un nombre correct !")
                 return nil
             end
             birdItem:RightLabel(dateInput .." ans")

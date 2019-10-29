@@ -1,0 +1,27 @@
+--[[
+-- AFK Kick Time Limit (in seconds)
+secondsUntilKick = 6000
+
+-- Warn players if 3/4 of the Time Limit ran up
+kickWarning = true
+Citizen.CreateThread(function()
+	while true do
+		Wait(1000)
+		
+		playerPed = GetPlayerPed(-1)
+		if playerPed then
+			currentPos = GetEntityCoords(playerPed, true)
+
+			if currentPos == prevPos then
+				if time > 0 then
+					time = time - 1
+				else
+					TriggerServerEvent("kickForBeingAnAFKDouchebag")
+				end
+			else
+				time = secondsUntilKick
+			end
+			prevPos = currentPos
+		end
+	end
+end)]]

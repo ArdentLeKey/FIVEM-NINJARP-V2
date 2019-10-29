@@ -28,26 +28,17 @@ local PhoneInCall = {}
 local currentPlaySound = false
 local soundDistanceMax = 8.0
 
-function hasPhone (cb)
-  cb(true)
-end
-
-function ShowNoPhoneWarning ()
-end
-
 
 Citizen.CreateThread(function()
   while true do
     Citizen.Wait(0)
     if takePhoto ~= true then
       if IsControlJustPressed(1, 172) then
-        hasPhone(function (hasPhone)
-          if hasPhone == true then
-            TooglePhone()
-          else
-            ShowNoPhoneWarning()
-          end
-        end)
+        if exports.nMenuPersonnel:getQuantity(3) > 0 then
+          TooglePhone()
+        else
+          exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Poches", "", "~h~Vous n'avez pas de téléphone sur vous !")
+        end
       end
       if menuIsOpen == true then
         DisableControlAction(0, 140,true) --DESACTIVE CONTROLL B

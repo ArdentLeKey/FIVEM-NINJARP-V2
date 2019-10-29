@@ -150,8 +150,9 @@
      
          TriggerEvent("food:veat", 2) -- Change this with your food script
          
-     end
-     TriggerEvent('player:looseItem', itemId, quantity)
+	 end
+	
+	TriggerEvent('player:looseItem', itemId, quantity)
  end
  
  function PlayerIsDead()
@@ -204,10 +205,15 @@ end)
 		if item == invItem[ind] then
 			indexInv = item:IndexToItem(index)
 				itemMenu.OnItemSelect = function(sender, item, index)
+					local item_usable = ITEMS[tonumber(ind)].isUsable
 					if item == useItem then
-						use(ind,indexInv)
-						exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Inventaire", "~h~Vous avez utilisé x"..indexInv.. " "..value.libelle, "")
-						_menuPool:CloseAllMenus(true)
+						if item_usable > 0 then
+							use(ind,indexInv)
+							exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Inventaire", "~h~Vous avez utilisé x"..indexInv.. " "..value.libelle, "")
+							_menuPool:CloseAllMenus(true)
+						else
+							exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Inventaire", "", "~h~Cette objet n'est pas utilisable !")
+						end
 					elseif item == giveItem then
 						player, distance = GetClosestPlayer()
 						if(distance ~= -1 and distance < 3) then

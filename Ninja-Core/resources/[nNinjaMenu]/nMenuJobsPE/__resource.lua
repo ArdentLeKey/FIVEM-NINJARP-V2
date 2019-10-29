@@ -43,6 +43,7 @@ client_scripts {
 }
 
 client_scripts {
+    'config/config.lua',
 	"client/client.lua",
     'client/menu.lua'
 }

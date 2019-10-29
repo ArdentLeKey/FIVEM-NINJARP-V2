@@ -14,6 +14,7 @@ AddEventHandler("vCharacter:SpawnCharacter", function()
 	if result[1].isFirstConnection == 1 then
 		MySQL.Sync.execute("UPDATE users SET serverid = @serverid WHERE license = @license", {['@license'] = license, ['@serverid'] = source})
 		MySQL.Sync.execute("INSERT INTO outfits(license) VALUES (@license)",{['@license']=license})
+		MySQL.Sync.execute("INSERT INTO users_vetement(license) VALUES (@license)",{['@license']=license})
 		MySQL.Sync.execute("UPDATE users SET isFirstConnection = 0 WHERE license = @username", {['@username'] = license})
 		TriggerClientEvent("vCharacter:UpdateCustomization", source, "mp_m_freemode_01")
 		TriggerClientEvent("vCharacter:OpenIdentityMenu", source)

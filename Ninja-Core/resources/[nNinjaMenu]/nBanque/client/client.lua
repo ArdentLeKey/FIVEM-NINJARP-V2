@@ -38,83 +38,41 @@ local atms = {
     {name="ATM", id=277, x=-2955.70, y=488.7218, z=15.486},
     {name="ATM", id=277, x=-3044.22, y=595.2429, z=7.595},
     {name="ATM", id=277, x=-3144.13, y=1127.415, z=20.868},
-    {name="ATM", id=277, x=-3241.10, y=996.6881, z=12.500},
-    {name="ATM", id=277, x=-3241.11, y=1009.152, z=12.877},
-    {name="ATM", id=277, x=-1305.40, y=-706.240, z=25.352},
-    {name="ATM", id=277, x=-538.225, y=-854.423, z=29.234},
-    {name="ATM", id=277, x=-711.156, y=-818.958, z=23.768},
-    {name="ATM", id=277, x=-717.614, y=-915.880, z=19.268},
-    {name="ATM", id=277, x=-526.566, y=-1222.90, z=18.434},
-    {name="ATM", id=277, x=-256.831, y=-719.646, z=33.444},
-    {name="ATM", id=277, x=-203.548, y=-861.588, z=30.205},
-    {name="ATM", id=277, x=112.4102, y=-776.162, z=31.427},
-    {name="ATM", id=277, x=112.9290, y=-818.710, z=31.386},
-    {name="ATM", id=277, x=119.9000, y=-883.826, z=31.191},
-    {name="ATM", id=277, x=149.4551, y=-1038.95, z=29.366},
-    {name="ATM", id=277, x=-846.304, y=-340.402, z=38.687},
-    {name="ATM", id=277, x=-1204.35, y=-324.391, z=37.877},
-    {name="ATM", id=277, x=-1216.27, y=-331.461, z=37.773},
-    {name="ATM", id=277, x=-56.1935, y=-1752.53, z=29.452},
-    {name="ATM", id=277, x=-261.692, y=-2012.64, z=30.121},
-    {name="ATM", id=277, x=-273.001, y=-2025.60, z=30.197},
-    {name="ATM", id=277, x=314.187, y=-278.621, z=54.170},
-    {name="ATM", id=277, x=-351.534, y=-49.529, z=49.042},
-    {name="ATM", id=277, x=24.589, y=-946.056, z=29.357},
-    {name="ATM", id=277, x=-254.112, y=-692.483, z=33.616},
-    {name="ATM", id=277, x=-1570.197, y=-546.651, z=34.955},
-    {name="ATM", id=277, x=-1415.909, y=-211.825, z=46.500},
-    {name="ATM", id=277, x=-1430.112, y=-211.014, z=46.500},
-    {name="ATM", id=277, x=33.232, y=-1347.849, z=29.497},
-    {name="ATM", id=277, x=129.216, y=-1292.347, z=29.269},
-    {name="ATM", id=277, x=287.645, y=-1282.646, z=29.659},
-    {name="ATM", id=277, x=289.012, y=-1256.545, z=29.440},
-    {name="ATM", id=277, x=295.839, y=-895.640, z=29.217},
-    {name="ATM", id=277, x=1686.753, y=4815.809, z=42.008},
-    {name="ATM", id=277, x=-302.408, y=-829.945, z=32.417},
-    {name="ATM", id=277, x=5.134, y=-919.949, z=29.557},
-  
   }
   
-  -- Display Map Blips
-  Citizen.CreateThread(function()
-      for _, item in pairs(atms) do
-        item.blip = AddBlipForCoord(item.x, item.y, item.z)
-        SetBlipSprite(item.blip, item.id)
-        SetBlipAsShortRange(item.blip, true)
-        SetBlipColour(item.blip, 25)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString(item.name)
-        EndTextCommandSetBlipName(item.blip)
-      end
-  end)
 
-  -- Check if player is near an atm
-function IsNearATM()
-    local ply = GetPlayerPed(-1)
-    local plyCoords = GetEntityCoords(ply, 0)
+Citizen.CreateThread(function()
     for _, item in pairs(atms) do
-    local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
-    if(distance <= 1) then
-      return true
+      item.blip = AddBlipForCoord(item.x, item.y, item.z)
+      SetBlipSprite(item.blip, item.id)
+      SetBlipAsShortRange(item.blip, true)
+      SetBlipColour(item.blip, 25)
+      BeginTextCommandSetBlipName("STRING")
+      AddTextComponentString(item.name)
+      EndTextCommandSetBlipName(item.blip)
     end
-  end
-end
+end)
 
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
         _menuPool:ProcessMenus()
 
-        if IsNearATM() == true then
-            if GetLastInputMethod(0) then
-                exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_TALK~ pour ~b~intéragir")
-            else
-                exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_CELLPHONE_RIGHT~ pour ~b~intéragir")
-            end
-            
-            if (IsControlJustReleased(0, 54) or IsControlJustReleased(0, 175)) then
-                mainMenu:Visible(not mainMenu:Visible())
-            end
+        local ply = GetPlayerPed(-1)
+        local plyCoords = GetEntityCoords(ply, 0)
+        for _, item in pairs(atms) do
+          local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
+          if(distance <= 1) then
+              if GetLastInputMethod(0) then
+                  exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_TALK~ pour ~b~intéragir")
+              else
+                  exports.nCoreStuff:Ninja_Core__DisplayHelpAlert("~INPUT_CELLPHONE_RIGHT~ pour ~b~intéragir")
+              end
+              
+              if (IsControlJustReleased(0, 54) or IsControlJustReleased(0, 175)) then
+                  mainMenu:Visible(not mainMenu:Visible())
+              end
+          end
         end
     end
 end)

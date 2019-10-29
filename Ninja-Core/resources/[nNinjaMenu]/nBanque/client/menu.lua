@@ -1,7 +1,4 @@
 --||@SuperCoolNinja.||--
-local Keys = {
-	["ESC"] = 322, ["BACKSPACE"] = 177, ["E"] = 38, ["ENTER"] = 18,	["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173
-}
 local id = PlayerId()
 local activeSolde = false
 something, CashAmount = StatGetInt("MP0_WALLET_BALANCE",-1)
@@ -98,7 +95,7 @@ function AddMainMoneySystem(menu)
 			_menuPool:CloseAllMenus(true)
 			local quantityMoneyitems = KeyboardInput("Somme d'argent à retirer :", "", 6)
 			if tonumber(quantityMoneyitems) == nil then
-				exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "Veuillez inserer un nombre correct !", "")
+				exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "", "Veuillez inserer un nombre correct !")
                 return nil
             end
 			TriggerServerEvent("nMenuBanque:RetirerArgent", quantityMoneyitems)
@@ -106,7 +103,7 @@ function AddMainMoneySystem(menu)
 			_menuPool:CloseAllMenus(true)
 			local quantityMoneyBanqueitems = KeyboardInput("Somme d'argent à déposer :", "", 6)
 			if tonumber(quantityMoneyBanqueitems) == nil then
-				exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "Veuillez inserer un nombre correct !", "")
+				exports.nCoreStuff:Ninja_Core__ShowNinjaNotification("Banque: ", "", "Veuillez inserer un nombre correct !")
                 return nil
             end
 			TriggerServerEvent("nMenuBanque:DeposerArgent", quantityMoneyBanqueitems)
