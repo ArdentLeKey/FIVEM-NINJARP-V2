@@ -1,13 +1,5 @@
 --||@SuperCoolNinja.||--
---[[
-	Police Rank Shema:
-	0 = Chomeur(Pas flic)
-	1 = Cadet
-	2 = Officier
-	3 = Sergent
-	4 = Lieutenant
-	5 = Capitaine
-]]
+
 medicRank = 0
 RegisterServerEvent('nMedics:OnJoin')
 AddEventHandler('nMedics:OnJoin', function()
@@ -32,7 +24,7 @@ AddEventHandler('nMedics:Check', function()
 	end)
 end)
 
-RegisterServerEvent('nPolice:AddOfficier')
+RegisterServerEvent('nPolice:AddOfficier') --EXEMPLE
 AddEventHandler('nPolice:AddOfficier', function(NearestPlayerSID)
 	local license = GetPlayerIdentifiers(NearestPlayerSID)[1]
 	if NearestPlayerSID ~= 0 then
@@ -41,16 +33,9 @@ AddEventHandler('nPolice:AddOfficier', function(NearestPlayerSID)
 	end
 end)
 
-RegisterServerEvent('nPolice:AddSergent')
-AddEventHandler('nPolice:AddSergent', function(NearestPlayerSID)
-	local license = GetPlayerIdentifiers(NearestPlayerSID)[1]
-	if NearestPlayerSID ~= 0 then
-		MySQL.Async.execute("UPDATE medics SET rank=@rank WHERE `license` = @license", {["@license"] = license, ["@rank"] = 3})
-		TriggerClientEvent('vMenuNotif:showNotification', NearestPlayerSID, "Une personne vous à promu Sergent.")
-	end
-end)
 
-function removeCop()
+
+function removeCop() --EXEMPLE
 	local source = source
 	local license = GetPlayerIdentifiers(source)[1]
 	MySQL.Async.execute("UPDATE medics SET rank=@rank WHERE `license` = @license", {["@license"] = license, ["@rank"] = 0})

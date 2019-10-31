@@ -14,12 +14,6 @@ local body = {
 	gap = 0.002,
 }
 
-local defaultText = 'Notification VALUE nil.'
-local defaultType = 'basGauche'
-local defaultTimeout = 6000
-
-Ninja_Core = {}
-
 -- --------------------------------------------
 -- Calculus functions
 -- --------------------------------------------
@@ -124,31 +118,13 @@ function nNotificationMain(options)
 	end)
 end
 
+
+-----||Notification utilisé plus souvent coté serveur||-----
 RegisterNetEvent('nMenuNotif:showNotification')
 AddEventHandler('nMenuNotif:showNotification', function(msg)
 	ShowNotification(msg)
 end)
 
-local function Ninja_Core__GetPedMugshot(ped)
-	local mugshot = RegisterPedheadshot(ped)
-	while not IsPedheadshotReady(mugshot) do
-		Citizen.Wait(0)
-	end
-	return mugshot, GetPedheadshotTxdString(mugshot)
-end
-
-Ninja_Core_ShowAdvancedNotification = function(title, subject, msg, icon, iconType)
-	AddTextEntry('Ninja_Core_ShowAdvancedNotification', msg)
-	SetNotificationTextEntry('Ninja_Core_ShowAdvancedNotification')
-	SetNotificationMessage(icon, icon, false, iconType, title, subject)
-	DrawNotification(false, false)
-end
-
-Ninja_Core__ShowNinjaNotification = function(title, subject, msg)
-	local mugshot, mugshotStr = Ninja_Core__GetPedMugshot(GetPlayerPed(-1))
-    Ninja_Core_ShowAdvancedNotification(title, subject, msg, mugshotStr, 1)
-	UnregisterPedheadshot(mugshot)
-end
 
 function ShowNotification(text)
     SetNotificationTextEntry( "STRING" )
@@ -156,12 +132,37 @@ function ShowNotification(text)
     DrawNotification( false, false )
 end
 
+local function Ninja_Core__GetPedMugshot(ped) 
+	local mugshot = RegisterPedheadshot(ped)
+	while not IsPedheadshotReady(mugshot) do
+		Citizen.Wait(0)
+	end
+	return mugshot, GetPedheadshotTxdString(mugshot)
+end
+
+
+Ninja_Core_ShowAdvancedNotification = function(title, subject, msg, icon, iconType) 
+	AddTextEntry('Ninja_Core_ShowAdvancedNotification', msg)
+	SetNotificationTextEntry('Ninja_Core_ShowAdvancedNotification')
+	SetNotificationMessage(icon, icon, false, iconType, title, subject)
+	DrawNotification(false, false)
+end
+
+-----||Notification avec votre tête||-----
+Ninja_Core__ShowNinjaNotification = function(title, subject, msg)
+	local mugshot, mugshotStr = Ninja_Core__GetPedMugshot(GetPlayerPed(-1))
+    Ninja_Core_ShowAdvancedNotification(title, subject, msg, mugshotStr, 1)
+	UnregisterPedheadshot(mugshot)
+end
+
+-----||Simple DisplayHelpAlert||-----
 Ninja_Core__DisplayHelpAlert = function(msg)
 	BeginTextCommandDisplayHelp("STRING");  
     AddTextComponentSubstringPlayerName(msg);  
     EndTextCommandDisplayHelp(0, 0, 1, -1);
 end
 
+-----||Uniquement utilisé pour l'interaction avec peds||-----
 Ninja_Core_PedsText = function(text, time)
     ClearPrints()
     SetTextEntry_2("STRING")
@@ -169,6 +170,7 @@ Ninja_Core_PedsText = function(text, time)
     DrawSubtitleTimed(time, 1)
 end
 
+-----||Uniquement utilisé pour les start vos anims||-----
 Ninja_Core_StartAnim = function(entity, lib, anim)
     RequestAnimDict(lib)
     while not HasAnimDictLoaded(lib) do

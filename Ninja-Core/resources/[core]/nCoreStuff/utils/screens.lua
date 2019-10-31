@@ -23,13 +23,13 @@ end
 
 function RenderWelcomeNot()
     DrawRect(0.883000000000001, 0.37, 0.220, 0.325, 0, 0, 0, 220)
-	DrawAdvancedText2(0.975000000000001, 0.239, 0.005, 0.0028, 0.4, "~h~Bienvenue sur Ninja Rôle-Play ~r~VII ~w~!", 255, 255, 255, 255, 0, 0)
+	DrawAdvancedText2(0.975000000000001, 0.239, 0.005, 0.0028, 0.4, "~h~Bienvenue sur Mon Serveur ~r~VII ~w~!", 255, 255, 255, 255, 0, 0) --Change ton text de bienvenue ici.
 	
 	DrawAdvancedText2(0.870000000000001, 0.290, 0.005, 0.0028, 0.3, "~w~ - Votre présence sur ~h~discord est OBLIGATOIRE ~w~!", 255, 255, 255, 255, 0, 1)
 	DrawAdvancedText2(0.870000000000001, 0.320, 0.005, 0.0028, 0.3, "~w~ - Vérifier bien que votre argent soit dans votre banque, ~h~pour éviter toute perte.", 255, 255, 255, 255, 0, 1)
 	DrawAdvancedText2(0.870000000000001, 0.370, 0.005, 0.0028, 0.3, "~w~ - Tout HRP est totalement interdit, merci de lire notre reglement.", 255, 255, 255, 255, 0, 1)
-	DrawAdvancedText2(0.870000000000001, 0.430, 0.005, 0.0028, 0.4, "~h~ - Notre discord: ~b~ vmXrt5e", 255, 255, 255, 255, 0, 1)
-	DrawAdvancedText2(0.870000000000001, 0.470, 0.005, 0.0028, 0.3, "~h~ - Nous vous souhaitons une bonne aventure \n parmi nous ! Ninja RP ~r~VII ~w~.", 255, 255, 255, 255, 0, 1)
+	DrawAdvancedText2(0.870000000000001, 0.430, 0.005, 0.0028, 0.4, "~h~ - Notre discord: ~b~ ...", 255, 255, 255, 255, 0, 1)
+	DrawAdvancedText2(0.870000000000001, 0.470, 0.005, 0.0028, 0.3, "~h~ - Nous vous souhaitons une bonne aventure \n parmi nous.", 255, 255, 255, 255, 0, 1)
 end
 
 RegisterNetEvent('nMenuNotif:welcomeNotification')

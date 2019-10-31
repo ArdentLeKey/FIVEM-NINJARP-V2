@@ -12,10 +12,10 @@ local isHudMoney = false
 local Myjob = ""
 copRank = 0
 medicRank = 0
-local jobs_list = {"Chomeur", "Police", "Ambulancier"}
+local jobs_list = {"Chomeur", "Police", "Ambulancier"} --Ajouté votre nouveau job ici pour l'afficher sur le system de carte identité'
 
 local holdingHostageInProgress = false
-local hostageAllowedWeapons = {
+local hostageAllowedWeapons = { --Arme listé pour prendre en otage une personne
 	"WEAPON_PISTOL",
 	"WEAPON_COMBATPISTOL",
 }

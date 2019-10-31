@@ -71,9 +71,3 @@ end)
         Citizen.Wait(0)
     end
 end)
-
-
-RegisterNetEvent("nVetement:LoadOldVetement")
-AddEventHandler("nVetement:LoadOldVetement", function()
-	TriggerServerEvent("vCharacter:SpawnCharacter")
-end)

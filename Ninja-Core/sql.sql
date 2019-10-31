@@ -23,15 +23,16 @@ CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   `isUsable` int(11) DEFAULT 0,
+  `type` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Listage des données de la table essentialmode.items : ~2 rows (environ)
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` (`id`, `libelle`, `isUsable`) VALUES
-	(1, 'Eau', 1),
-	(2, 'Pain', 1),
-	(3, 'phone', 0);
+INSERT INTO `items` (`id`, `libelle`, `isUsable`, `type`) VALUES
+	(1, 'Eau', 1, 1),
+	(2, 'Pain', 1, 2),
+	(3, 'phone', 0, 0);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. jobs
@@ -73,10 +74,8 @@ CREATE TABLE IF NOT EXISTS `outfits` (
   `cheveuxCouleur` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Listage des données de la table essentialmode.outfits : 1 rows
+-- Listage des données de la table essentialmode.outfits : 0 rows
 /*!40000 ALTER TABLE `outfits` DISABLE KEYS */;
-INSERT INTO `outfits` (`license`, `skin`, `skinTone`, `Dad`, `Mum`, `hairId`, `cheveuxCouleur`) VALUES
-	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 'mp_m_freemode_01', 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `outfits` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. phone_app_chat
@@ -221,10 +220,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone_number` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table essentialmode.users : ~1 rows (environ)
+-- Listage des données de la table essentialmode.users : ~0 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`license`, `money`, `bank`, `permission_level`, `group`, `isFirstConnection`, `job`, `nom`, `prenom`, `taille`, `lastpos`, `serverid`, `age`, `isDead`, `phone_number`) VALUES
-	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 0, 14300, 0, 'user', 0, 1, 'Ninja', 'Cool', 180, '{-154.07080078125, -307.36431884766,  38.584606170654}', 1, 50, 0, '531-0710');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. users_vetement
@@ -253,10 +250,8 @@ CREATE TABLE IF NOT EXISTS `users_vetement` (
   `Torso_Palette_Id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table essentialmode.users_vetement : ~1 rows (environ)
+-- Listage des données de la table essentialmode.users_vetement : ~0 rows (environ)
 /*!40000 ALTER TABLE `users_vetement` DISABLE KEYS */;
-INSERT INTO `users_vetement` (`license`, `Haut_Id`, `Haut_Drawable`, `Haut_Couleur`, `Haut_Palette_Id`, `Maillot_Id`, `Maillot_Drawable`, `Maillot_Couleur`, `Maillot_Palette_Id`, `Chaussure_Id`, `Chaussure_Drawable`, `Chaussure_Couleur`, `Chaussure_Palette_Id`, `Pantalon_Id`, `Pantalon_Drawable`, `Pantalon_Couleur`, `Pantalon_Palette_Id`, `Torso_Id`, `Torso_Drawable`, `Torso_Couleur`, `Torso_Palette_Id`) VALUES
-	('license:3f200ce0f1988f700dcff93d9070e35100f6e9c4', 11, 83, 3, 2, 8, 15, 0, 2, 6, 6, 0, 2, 4, 8, 0, 2, 3, 0, 0, 2);
 /*!40000 ALTER TABLE `users_vetement` ENABLE KEYS */;
 
 -- Listage de la structure de la table essentialmode. user_appartement

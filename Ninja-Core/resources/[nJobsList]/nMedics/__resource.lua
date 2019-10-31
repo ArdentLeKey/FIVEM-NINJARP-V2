@@ -62,7 +62,6 @@ client_scripts {
     'utils/peds.lua',
     'client/medic_main.lua',
     'client/medic_vestiaire.lua',
-    'client/medic_inventaire.lua',
     'client/medic_garage.lua',
     'client/medic_garageHelico.lua'
   }

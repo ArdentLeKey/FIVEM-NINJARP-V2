@@ -1,9 +1,6 @@
---[[
--- AFK Kick Time Limit (in seconds)
-secondsUntilKick = 6000
+local tempAvantKick = 6000 --Temps avant le Kick anti-Afk
 
--- Warn players if 3/4 of the Time Limit ran up
-kickWarning = true
+
 Citizen.CreateThread(function()
 	while true do
 		Wait(1000)
@@ -16,12 +13,12 @@ Citizen.CreateThread(function()
 				if time > 0 then
 					time = time - 1
 				else
-					TriggerServerEvent("kickForBeingAnAFKDouchebag")
+					TriggerServerEvent("kickForBeingAnAFKDouchebag") --Trigger l'event pour kick la personne
 				end
 			else
-				time = secondsUntilKick
+				time = tempAvantKick
 			end
 			prevPos = currentPos
 		end
 	end
-end)]]
+end)

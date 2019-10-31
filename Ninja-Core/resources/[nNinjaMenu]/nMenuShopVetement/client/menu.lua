@@ -51,9 +51,17 @@ function AddMainClothMenu(menu)
 		AddChaussureHommeMenu(subChooseHomme)
 	elseif  GetEntityModel(GetPlayerPed(-1)) == -1667301416 then
 		local subvetementFemme = _menuPool:AddSubMenu(menu, "Haut", "") --SOUS MENU
+		local subVesteFemme = _menuPool:AddSubMenu(menu, "Veste", "")
+		local subPantalonFemme = _menuPool:AddSubMenu(menu, "Pantalon", "")
+		local subChaussureFemme = _menuPool:AddSubMenu(menu, "Chaussure", "")
 		AddHautFemmeMenu(subvetementFemme)
+		AddVesteFemmeMenu(subVesteFemme)
+		AddPantalonFemmeMenu(subPantalonFemme)
+		AddChaussureFemmeMenu(subChaussureFemme)
 	end
 end
+
+---------------------------------------------[[CATEGORIE HOMME]]------------------------------------
 
 ------------||HAUT HOMME||---------
 AddHautHommeMenu = function(menu)
@@ -5619,31 +5627,3620 @@ AddChaussureHommeMenu = function(menu)
     end
 end
 
+---------------------------------------------[[CATEGORIE FEMME]]------------------------------------
 
--------||HAUT FEMME||--------
+------------||HAUT FEMME||---------
 AddHautFemmeMenu = function(menu)
 	for _, find in pairs(nConfig.HautFemme) do
-        local aaaa = NativeUI.CreateItem(find.Label, "")
-        menu.SubMenu:AddItem(aaaa)
+        local hautHItem = NativeUI.CreateItem(find.Label, "")
+		menu.SubMenu:AddItem(hautHItem)
+		hautHItem:RightLabel("~g~$200")
+		menu.SubMenu.OnIndexChange = function(sender, index)
 
-		menu.SubMenu.OnItemSelect = function(_, _, index)
+				if index == 1 then
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 2
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 2
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 2 then
+
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 5
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 6
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 15
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2					--_menuPool:CloseAllMenus(true)
+
+
+				elseif index == 3 then
+
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 14
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					--_menuPool:CloseAllMenus(true)
+
+
+				elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 14
+					Haut_Couleur = 1
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					--_menuPool:CloseAllMenus(true)
+
+
+				elseif index == 5 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 16
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 6
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 15
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 23
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 6
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 15
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 7 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 38
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 2
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 8 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 36
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 6
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 15
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 9 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 38
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 2
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 10 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 38
+					Haut_Couleur = 1
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 2
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 11 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 40
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 2
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 12 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 45
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 0
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 13 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 49
+					Haut_Couleur = 1
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 14 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 56
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 15 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 67
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 2
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 16 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 68
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 17 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 73
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 18 then           --> Sweet
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 75
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 1
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 19 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 76
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 9
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 20 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 88
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 14
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				end
+			end
+
+		menu.SubMenu.OnItemSelect = function(sender, item, index)
 			if index == 1 then
+				local ped = GetPlayerPed(-1)
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 2
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 2
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
 				_menuPool:CloseAllMenus(true)
-				
+
+
+			elseif index == 2 then
+				local ped = GetPlayerPed(-1)
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 5
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 6
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 15
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 3 then
+				local ped = GetPlayerPed(-1)
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 14
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id)
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id)
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+
+			elseif index == 4 then
+				local ped = GetPlayerPed(-1)
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 14
+				Haut_Couleur = 1
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 5 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 16
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 6
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 15
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 6 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 23
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 6
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 15
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 7 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 23
+				Haut_Couleur = 1
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 6
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 15
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 8 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 36
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 6
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 15
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 9 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 38
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 2
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 10 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 38
+				Haut_Couleur = 1
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 2
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 11 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 40
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 2
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 12 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 45
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 0
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 13 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 49
+				Haut_Couleur = 1
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 14 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 56
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 15 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 67
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 2
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 16 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 68
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+			elseif index == 17 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 73
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+			elseif index == 18 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 75
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 1
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+			elseif index == 19 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 76
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 14
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 9
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 20 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 88
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 15
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 14
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
 			end
 		end
     end
 end
 
+------------||Veste FEMME||---------
+AddVesteFemmeMenu = function(menu)
+	for _, find in pairs(nConfig.VesteFemme) do
+        local hautHItem = NativeUI.CreateItem(find.Label, "")
+		menu.SubMenu:AddItem(hautHItem)
+		hautHItem:RightLabel("~g~$200")
+		menu.SubMenu.OnIndexChange = function(sender, index)
+
+				if index == 1 then
+					local ped = GetPlayerPed(-1)
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 3
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 2 then
+
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 10
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 6
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2					--_menuPool:CloseAllMenus(true)
+
+				elseif index == 3 then
+
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 8
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 5 
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					--_menuPool:CloseAllMenus(true)
+
+				elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 35
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 5 
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					--_menuPool:CloseAllMenus(true)
+
+				elseif index == 5 then
+
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 54
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 3
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					--_menuPool:CloseAllMenus(true)
+
+				elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 50
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					--_menuPool:CloseAllMenus(true)
+
+
+				elseif index == 7 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 24
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 16
+					Maillot_Couleur = 1
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 5
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 8 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 24
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 16
+					Maillot_Couleur = 5
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 5
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 9 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 25
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 16
+					Maillot_Couleur = 5
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 6
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 10 then
+						local ped = GetPlayerPed(-1)
+
+						----||11 TOP||----
+						Haut_Id = 11
+						Haut_Drawable = 31
+						Haut_Couleur = 0
+						Haut_Palette_Id = 2
+
+
+						----||8 UNDERSHIRT||----
+						Maillot_Id = 8
+						Maillot_Drawable = 80
+						Maillot_Couleur = 5
+						Maillot_Palette_Id = 2
+
+						----||3 TORSO||----
+						Torso_Id = 3
+						Torso_Drawable = 5
+						Torso_Couleur = 0
+						Torso_Palette_Id = 2
+
+
+						SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+						SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+						SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 11 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 52
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 40
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 12 then
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 53
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 40
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 9
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 13 then
+						local ped = GetPlayerPed(-1)
+
+
+						----||11 TOP||----
+						Haut_Id = 11
+						Haut_Drawable = 55
+						Haut_Couleur = 0
+						Haut_Palette_Id = 2
+
+						----||8 UNDERSHIRT||----
+						Maillot_Id = 8
+						Maillot_Drawable = 15
+						Maillot_Couleur = 0
+						Maillot_Palette_Id = 2
+
+						----||3 TORSO||----
+						Torso_Id = 3
+						Torso_Drawable = 6
+						Torso_Couleur = 0
+						Torso_Palette_Id = 2
+
+
+						SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+						SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+						SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 14 then
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 57
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 40
+					Maillot_Couleur = 2
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+
+				elseif index == 15 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 64
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 47
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 7
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 16 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 65
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 181
+					Maillot_Couleur = 1
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 7
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 17 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 65
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 181
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 7
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 18 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 69
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 57
+					Maillot_Couleur = 1
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 19 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 70
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 57
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				elseif index == 20 then
+						local ped = GetPlayerPed(-1)
+
+
+						----||11 TOP||----
+						Haut_Id = 11
+						Haut_Drawable = 80
+						Haut_Couleur = 0
+						Haut_Palette_Id = 2
+
+						----||8 UNDERSHIRT||----
+						Maillot_Id = 8
+						Maillot_Drawable = 57
+						Maillot_Couleur = 0
+						Maillot_Palette_Id = 2
+
+						----||3 TORSO||----
+						Torso_Id = 3
+						Torso_Drawable = 3
+						Torso_Couleur = 0
+						Torso_Palette_Id = 2
+
+
+						SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+						SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+						SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+
+				end
+			end
+
+		menu.SubMenu.OnItemSelect = function(sender, item, index)
+			if index == 1 then
+					local ped = GetPlayerPed(-1)
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 3
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id)
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id)
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+			elseif index == 2 then
+				local ped = GetPlayerPed(-1)
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 10
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 14
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 6
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 3 then
+
+				local ped = GetPlayerPed(-1)
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 8
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 14
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 5 
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 35
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 5 
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+
+
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 5 then
+
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 54
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+			elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 50
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 14
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 7 then --A REPRENDRE ICI 
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 24
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 16
+				Maillot_Couleur = 1
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 5
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 8 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 24
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 16
+				Maillot_Couleur = 5
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 5
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 9 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 25
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 16
+				Maillot_Couleur = 5
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 6
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 10 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 31
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 80
+				Maillot_Couleur = 5
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 5
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 11 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 52
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 40
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 3
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 12 then
+				local ped = GetPlayerPed(-1)
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 53
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 40
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 9
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 13 then
+					local ped = GetPlayerPed(-1)
+
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 55
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 15
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 6
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+					SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+					SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+					SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 14 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 57
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 40
+				Maillot_Couleur = 2
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 3
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 15 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 64
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 47
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 7
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 16 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 65
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 181
+				Maillot_Couleur = 1
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 7
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 17 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 65
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 181
+				Maillot_Couleur = 0
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 7
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 18 then
+				local ped = GetPlayerPed(-1)
+
+
+				----||11 TOP||----
+				Haut_Id = 11
+				Haut_Drawable = 69
+				Haut_Couleur = 0
+				Haut_Palette_Id = 2
+
+				----||8 UNDERSHIRT||----
+				Maillot_Id = 8
+				Maillot_Drawable = 57
+				Maillot_Couleur = 1
+				Maillot_Palette_Id = 2
+
+				----||3 TORSO||----
+				Torso_Id = 3
+				Torso_Drawable = 3
+				Torso_Couleur = 0
+				Torso_Palette_Id = 2
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 19 then
+				local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 70
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 57
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 20 then
+				local ped = GetPlayerPed(-1)
+
+					----||11 TOP||----
+					Haut_Id = 11
+					Haut_Drawable = 80
+					Haut_Couleur = 0
+					Haut_Palette_Id = 2
+
+					----||8 UNDERSHIRT||----
+					Maillot_Id = 8
+					Maillot_Drawable = 57
+					Maillot_Couleur = 0
+					Maillot_Palette_Id = 2
+
+					----||3 TORSO||----
+					Torso_Id = 3
+					Torso_Drawable = 3
+					Torso_Couleur = 0
+					Torso_Palette_Id = 2
+
+
+				SetPedComponentVariation(ped, Torso_Id, Torso_Drawable, Torso_Couleur, Torso_Palette_Id)		-- Torso
+				SetPedComponentVariation(ped, Maillot_Id, Maillot_Drawable, Maillot_Couleur, Maillot_Palette_Id) 	-- Undershirt
+				SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id) 	-- Torso 2
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+			end
+
+		end
+    end
+end
+
+------------||Pantalon FEMME||---------
+AddPantalonFemmeMenu = function(menu)
+	for _, find in pairs(nConfig.PantalonFemme) do
+        local pantalonFItem = NativeUI.CreateItem(find.Label, "")
+		menu.SubMenu:AddItem(pantalonFItem)
+		pantalonFItem:RightLabel("~g~$200")
+		menu.SubMenu.OnIndexChange = function(sender, index)
+
+				if index == 1 then
+					local ped = GetPlayerPed(-1)
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 1
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 2 then
+
+					local ped = GetPlayerPed(-1)
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 2
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 3 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 3
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 4
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 5 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 7
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+					
+
+				elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 11
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 7 then
+					local ped = GetPlayerPed(-1)
 
 
 
 
 
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 18
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 8 then
+					local ped = GetPlayerPed(-1)
+
+
+	
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 23
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 9 then
+					local ped = GetPlayerPed(-1)
 
 
 
 
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 11
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 10 then
+						local ped = GetPlayerPed(-1)
+
+
+
+
+						----||↓↓↓↓||---- -> ID 4 --> Legs
+						Pantalon_Id = 4
+						Pantalon_Drawable = 25
+						Pantalon_Couleur = 0
+						Pantalon_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 11 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 32
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 12 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 36
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 13 then
+						local ped = GetPlayerPed(-1)
+
+
+
+
+							----||↓↓↓↓||---- -> ID 4 --> Legs
+						Pantalon_Id = 4
+						Pantalon_Drawable = 43
+						Pantalon_Couleur = 0
+						Pantalon_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 14 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 44
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+
+				elseif index == 15 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 73
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 16 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 84
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 17 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 102
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 18 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 112
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 19 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 103
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				elseif index == 20 then
+						local ped = GetPlayerPed(-1)
+
+
+
+
+
+							----||↓↓↓↓||---- -> ID 4 --> Legs
+						Pantalon_Id = 4
+						Pantalon_Drawable = 78
+						Pantalon_Couleur = 0
+						Pantalon_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+
+				end
+			end
+
+		menu.SubMenu.OnItemSelect = function(sender, item, index)
+			if index == 1 then
+					local ped = GetPlayerPed(-1)
+
+
+
+					Pantalon_Id = 4
+					Pantalon_Drawable = 1
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+			elseif index == 2 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 2
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 3 then
+
+				local ped = GetPlayerPed(-1)
+
+
+
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 3
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 4 
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+
+
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 5 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 7
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+			elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 11
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 7 then --A REPRENDRE ICI 
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 18
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 8 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 23
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 9 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 11
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 10 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 25
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 11 then
+				local ped = GetPlayerPed(-1)
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 32
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 12 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 36
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 13 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 43
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 14 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 44
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 15 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 73
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 16 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 84
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 17 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 102
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 18 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 112
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 19 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					----||↓↓↓↓||---- -> ID 4 --> Legs
+					Pantalon_Id = 4
+					Pantalon_Drawable = 103
+					Pantalon_Couleur = 0
+					Pantalon_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 20 then
+				local ped = GetPlayerPed(-1)
+
+				----||↓↓↓↓||---- -> ID 4 --> Legs
+				Pantalon_Id = 4
+				Pantalon_Drawable = 78
+				Pantalon_Couleur = 0
+				Pantalon_Palette_Id = 2
+
+				SetPedComponentVariation(ped, Pantalon_Id, Pantalon_Drawable, Pantalon_Couleur, Pantalon_Palette_Id)		-- Legs
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+			end
+
+		end
+    end
+end
+
+
+------------||Chaussure FEMME||---------
+AddChaussureFemmeMenu = function(menu)
+	for _, find in pairs(nConfig.ChaussureFemme) do
+        local pantalonFItem = NativeUI.CreateItem(find.Label, "")
+		menu.SubMenu:AddItem(pantalonFItem)
+		pantalonFItem:RightLabel("~g~$200")
+		menu.SubMenu.OnIndexChange = function(sender, index)
+
+				if index == 1 then
+					local ped = GetPlayerPed(-1)
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 1 
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 2 then
+
+					local ped = GetPlayerPed(-1)
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 2
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 3 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 3
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 4
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 5 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 5
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 6
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+
+				elseif index == 7 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 7
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 8 then
+					local ped = GetPlayerPed(-1)
+
+
+	
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 9
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 9 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 13
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 10 then
+						local ped = GetPlayerPed(-1)
+
+
+
+
+						Chaussure_Id = 6
+						Chaussure_Drawable = 14
+						Chaussure_Couleur = 0
+						Chaussure_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 11 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 15
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 12 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+						Chaussure_Id = 6
+					Chaussure_Drawable = 18
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 13 then
+						local ped = GetPlayerPed(-1)
+
+
+
+
+							Chaussure_Id = 6
+						Chaussure_Drawable = 19
+						Chaussure_Couleur = 0
+						Chaussure_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 14 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+						Chaussure_Id = 6
+					Chaussure_Drawable = 20
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 15 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 21
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 16 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 24
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 17 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 25
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 18 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 26
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 19 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+						Chaussure_Id = 27
+					Chaussure_Drawable = 0
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				elseif index == 20 then
+						local ped = GetPlayerPed(-1)
+
+
+
+
+
+						Chaussure_Id = 6
+						Chaussure_Drawable = 36
+						Chaussure_Couleur = 0
+						Chaussure_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+
+				end
+			end
+
+		menu.SubMenu.OnItemSelect = function(sender, item, index)
+			if index == 1 then
+					local ped = GetPlayerPed(-1)
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 1 
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+			elseif index == 2 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 2
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 3 then
+
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable =  3
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 4 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 4
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+
+
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 5 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 5
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+			elseif index == 6 then
+
+					local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 6
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 7 then --A REPRENDRE ICI 
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 7
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 8 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 9
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 9 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 13
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 10 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 14
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 11 then
+				local ped = GetPlayerPed(-1)
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 15
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 12 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 18
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 13 then
+					local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 19
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 14 then
+				local ped = GetPlayerPed(-1)
+
+
+
+					
+						Chaussure_Id = 6
+						Chaussure_Drawable = 20
+						Chaussure_Couleur = 0
+						Chaussure_Palette_Id = 2
+
+						SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+						TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+						_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 15 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 21
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 16 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 24
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 17 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 25
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 18 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 26
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 19 then
+				local ped = GetPlayerPed(-1)
+
+
+
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 27
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+					TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+					_menuPool:CloseAllMenus(true)
+
+
+			elseif index == 20 then
+				local ped = GetPlayerPed(-1)
+
+					Chaussure_Id = 6
+					Chaussure_Drawable = 36
+					Chaussure_Couleur = 0
+					Chaussure_Palette_Id = 2
+
+					SetPedComponentVariation(ped, Chaussure_Id, Chaussure_Drawable, Chaussure_Couleur, Chaussure_Palette_Id)		-- Legs
+				TriggerServerEvent("nShopVetement:UpdateVetement", Haut_Id,Haut_Drawable,Haut_Couleur,Haut_Palette_Id,Maillot_Id,Maillot_Drawable,Maillot_Couleur,Maillot_Palette_Id,Chaussure_Id,Chaussure_Drawable,Chaussure_Couleur,Chaussure_Palette_Id,Pantalon_Id,Pantalon_Drawable,Pantalon_Couleur,Pantalon_Palette_Id,Torso_Id,Torso_Drawable,Torso_Couleur,Torso_Palette_Id)
+				_menuPool:CloseAllMenus(true)
+			end
+
+		end
+    end
+end
 
 
 RegisterNetEvent("nShopVetement:C_UpdateVetement")
@@ -5678,3 +9275,8 @@ AddEventHandler("nShopVetement:C_UpdateVetement",function(args)
 	SetPedComponentVariation(ped, Haut_Id, Haut_Drawable, Haut_Couleur, Haut_Palette_Id)-- ID 11
 end)
 
+
+RegisterNetEvent("nVetement:LoadOldVetement")
+AddEventHandler("nVetement:LoadOldVetement", function()
+	TriggerServerEvent("vCharacter:SpawnCharacter")
+end)

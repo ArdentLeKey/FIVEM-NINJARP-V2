@@ -8,7 +8,7 @@ AddEventHandler("item:getItems", function()
 	local result = MySQL.Sync.fetchAll("SELECT * FROM user_inventory JOIN items ON `user_inventory`.`item_id` = `items`.`id` WHERE license=@username", {['@username'] = player})
 	if (result) then
 		for k,v in ipairs(result) do
-			t = { ["quantity"] = v.quantity, ["libelle"] = v.libelle, ["isUsable"] = v.isUsable }
+			t = { ["quantity"] = v.quantity, ["libelle"] = v.libelle, ["isUsable"] = v.isUsable, ["type"] = v.type }
 			items[v.item_id] = t
 		end
 	end
@@ -60,7 +60,7 @@ AddEventHandler("player:giveItem", function(NearestPlayerSID, item, item_name, q
     local targetid = getPlayerID(NearestPlayerSID)
     local quantity = math.floor(tonumber(quantity))
     MySQL.Async.fetchScalar("SELECT SUM(quantity) FROM user_inventory WHERE license = @username", { ['@username'] = targetid }, function(result)
-        if (result + quantity < 101) then
+        if (result + quantity < 101) then --Limit item max pour l'inventaire'
 			TriggerClientEvent("player:looseItem", mysource, item, quantity)
 			TriggerClientEvent("player:receiveItem", NearestPlayerSID, item, quantity)
 			TriggerClientEvent('nMenuNotif:player', mysource, "Vous avez donné ~b~" .. quantity .. "~s~ ~g~" .. item_name .. "~s~ à " .. GetPlayerName(NearestPlayerSID))

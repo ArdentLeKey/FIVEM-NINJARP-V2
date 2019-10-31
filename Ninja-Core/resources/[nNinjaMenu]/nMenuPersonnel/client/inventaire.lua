@@ -141,18 +141,16 @@
       call({count=getQuantity(item)})
  end)
 
+
  function use(itemId, quantity)
-     if itemId == FoodID then
-     
-         TriggerEvent("food:vdrink", 5) -- Change this with your drink script
-         
-     elseif itemId == WaterID then
-     
-         TriggerEvent("food:veat", 2) -- Change this with your food script
-         
-	 end
-	
+ 
 	TriggerEvent('player:looseItem', itemId, quantity)
+
+	if ITEMS[tonumber(itemId)].type == 2 then
+       -- SOON
+    elseif ITEMS[tonumber(itemId)].type == 1 then
+        --SOON
+    end
  end
  
  function PlayerIsDead()

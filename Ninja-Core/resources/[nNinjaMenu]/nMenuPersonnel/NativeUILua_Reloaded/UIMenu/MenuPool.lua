@@ -194,8 +194,8 @@ end
 ---@return nil
 ---@public
 
-local x = 0.49
-local y = 0.48
+local x = 0.48
+local y = 0.47
 local width = 1.1
 local height = 1.1
 

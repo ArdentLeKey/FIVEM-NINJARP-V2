@@ -1,5 +1,7 @@
 nConfig = {}
 
+
+---------------------------------------------[[CATEGORIE HOMME]]------------------------------------
 nConfig.HautHomme = {
     {Label = "Torse nue"}, --Index 1
     {Label = "Haut1"}, --Index 2
@@ -141,9 +143,7 @@ nConfig.ChaussureHomme = {
 
 
 
-
-
-
+---------------------------------------------[[CATEGORIE FEMME]]------------------------------------
 
 nConfig.HautFemme = {
     {Label = "Haut1"}, --Index 1
@@ -156,4 +156,84 @@ nConfig.HautFemme = {
     {Label = "Haut8"}, --Index 8
     {Label = "Haut9"}, --Index 9
     {Label = "Haut10"}, --Index 10
+    {Label = "Haut11"}, --Index 11
+    {Label = "Haut12"}, --Index 12
+    {Label = "Haut13"}, --Index 13
+    {Label = "Haut14"}, --Index 14
+    {Label = "Haut15"}, --Index 15
+    {Label = "Haut16"}, --Index 16
+    {Label = "Haut17"}, --Index 17
+    {Label = "Haut18"}, --Index 18
+    {Label = "Haut19"}, --Index 19
+    {Label = "Haut20"}, --Index 20
+}
+
+nConfig.VesteFemme = {
+    {Label = "Veste1"}, --Index 1
+    {Label = "Veste2"}, --Index 2
+    {Label = "Veste3"}, --Index 3
+    {Label = "Veste4"}, --Index 4
+    {Label = "Veste5"}, --Index 5
+    {Label = "Veste6"}, --Index 6
+    {Label = "Veste7"}, --Index 7
+    {Label = "Veste8"}, --Index 8
+    {Label = "Veste9"}, --Index 9
+    {Label = "Veste10"}, --Index 10
+    {Label = "Veste11"}, --Index 11
+    {Label = "Veste12"}, --Index 12
+    {Label = "Veste13"}, --Index 13
+    {Label = "Veste14"}, --Index 14
+    {Label = "Veste15"}, --Index 15
+    {Label = "Veste16"}, --Index 16
+    {Label = "Veste17"}, --Index 17
+    {Label = "Veste18"}, --Index 18
+    {Label = "Veste19"}, --Index 19
+    {Label = "Veste20"}, --Index 20
+}
+
+
+nConfig.PantalonFemme = {
+    {Label = "Pantalon1"}, --Index 1
+    {Label = "Pantalon2"}, --Index 2
+    {Label = "Pantalon3"}, --Index 3
+    {Label = "Pantalon4"}, --Index 4
+    {Label = "Pantalon5"}, --Index 5
+    {Label = "Pantalon6"}, --Index 6
+    {Label = "Pantalon7"}, --Index 7
+    {Label = "Pantalon8"}, --Index 8
+    {Label = "Pantalon9"}, --Index 9
+    {Label = "Pantalon10"}, --Index 10
+    {Label = "Pantalon11"}, --Index 11
+    {Label = "Pantalon12"}, --Index 12
+    {Label = "Pantalon13"}, --Index 13
+    {Label = "Pantalon14"}, --Index 14
+    {Label = "Pantalon15"}, --Index 15
+    {Label = "Pantalon16"}, --Index 16
+    {Label = "Pantalon17"}, --Index 17
+    {Label = "Pantalon18"}, --Index 18
+    {Label = "Pantalon19"}, --Index 19
+    {Label = "Pantalon20"}, --Index 20
+}
+
+nConfig.ChaussureFemme = {
+    {Label = "Chaussure1"}, --Index 1
+    {Label = "Chaussure2"}, --Index 2
+    {Label = "Chaussure3"}, --Index 3
+    {Label = "Chaussure4"}, --Index 4
+    {Label = "Chaussure5"}, --Index 5
+    {Label = "Chaussure6"}, --Index 6
+    {Label = "Chaussure7"}, --Index 7
+    {Label = "Chaussure8"}, --Index 8
+    {Label = "Chaussure9"}, --Index 9
+    {Label = "Chaussure10"}, --Index 10
+    {Label = "Chaussure11"}, --Index 11
+    {Label = "Chaussure12"}, --Index 12
+    {Label = "Chaussure13"}, --Index 13
+    {Label = "Chaussure14"}, --Index 14
+    {Label = "Chaussure15"}, --Index 15
+    {Label = "Chaussure16"}, --Index 16
+    {Label = "Chaussure17"}, --Index 17
+    {Label = "Chaussure18"}, --Index 18
+    {Label = "Chaussure19"}, --Index 19
+    {Label = "Chaussure20"}, --Index 20
 }
