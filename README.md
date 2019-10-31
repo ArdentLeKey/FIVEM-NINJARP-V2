@@ -28,3 +28,4 @@ Vous pourrez trouvé toutes les information utile sur notre Discord ci-dessous.
 
 Notre Discord:
 https://discord.gg/7AU2F2
+
