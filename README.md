@@ -8,7 +8,7 @@ Nous avons decider par manque de temps de partager notre base pour aider les dé
 **Information:**
 Avant de faire quoi que ce soit ! lisez bien.
 
-**Tout d'abord pourquoi avant nous release cette base ES ? **
+**Tout d'abord pourquoi avant nous release cette base ES ?**
 Et bien premièrement par manque de temps, puis deuxièmement nouveau projet en tête.
 
 **En quoi cette base est-elle utile ?**
@@ -23,7 +23,7 @@ puis a ajouté de vous-mêmes.Je n'ai pas le temps pour aider à faire du copier
 débrouillez-vous ! le forum fivem vous aidera.
 
 
-**Ou puis-je trouver des screens ou vidéo en rapport avec la base ? **
+**Ou puis-je trouver des screens ou vidéo en rapport avec la base ?**
 Vous pourrez trouvé toutes les information utile sur notre Discord ci-dessous.
 
 Notre Discord:
