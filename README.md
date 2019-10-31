@@ -1,5 +1,5 @@
 # Ninja-V2-Base-FX
-Nous avons decider par manque de temps partager notre base pour aider les développeurs à créer leur serveur.
+Nous avons decider par manque de temps de partager notre base pour aider les développeurs à créer leur serveur.
 
 
 --------------||by Super.Cool.Ninja||--------------
