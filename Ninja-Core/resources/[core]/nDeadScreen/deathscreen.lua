@@ -1,11 +1,11 @@
-local minute = 60 * 1000
-local EarlyRespawnTimer = 1 * minute
-local BleedoutTimer = 10 * minute
+firstTick = false
+local EarlyRespawnTimer = 60000 * 1
+local BleedoutTimer = 60000 * 10
 local UI = { 
 	x =  0.000,
 	y = -0.001,
 }
-
+local IsPedDead = false
 local Keys = {
 	["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
 	["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177,
@@ -20,40 +20,16 @@ local Keys = {
 
 Citizen.CreateThread(function()
 	while true do
-		Wait(300)
-		if firstTick then
-			playerPed = PlayerPedId()
-			if GetEntityHealth(playerPed) <= 0 then
-				IsPedDead = true
-			else
-				IsPedDead = false
-			end
-		end
-	end
-end)
-
-Citizen.CreateThread(function()
-	local IsPedDead = false
-	
-	while true do
 		Citizen.Wait(0)
-		local player = PlayerId()
-		if NetworkIsPlayerActive(player) then
-			local playerPed = PlayerPedId()
-
-			if IsPedFatallyInjured(playerPed) and not IsPedDead then
-				IsPedDead = true
-				TriggerEvent('esx:onPlayerDeath')
-			elseif not IsPedFatallyInjured(playerPed) then
-				IsPedDead = false
-			end
+		local playerPed = PlayerPedId()
+		if IsPedFatallyInjured(playerPed) and not IsPedDead then
+			IsPedDead = true
+			_nBeginDeadTimer()
+			_nSendSignal()
+		elseif not IsPedFatallyInjured(playerPed) then
+			IsPedDead = false
 		end
 	end
-end)
-
-AddEventHandler('esx:onPlayerDeath', function()
-	IsPedDead = true
-	_nOnPlayerDeath()
 end)
 
 function drawRct(x,y,width,height,r,g,b,a)
@@ -114,13 +90,6 @@ __nSaveNewPosition = function()
 	TriggerServerEvent("projectEZ:savelastpos", LastPosX , LastPosY , LastPosZ, LastPosH)
 end
 
-_nOnPlayerDeath = function()
-	IsPedDead = true
-	_nBeginDeadTimer()
-	_nSendSignal()
-	_nDrawComa()
-end
-
 _nSendSignal = function()
 	Citizen.CreateThread(function()
 		local timer = BleedoutTimer
@@ -129,7 +98,7 @@ _nSendSignal = function()
 			Citizen.Wait(2)
 			timer = timer - 30
 
-			_nDrawComa()
+			--_nDrawComa()
 			drawRct(UI.x + 0.0,UI.y + 0.0, 1.0,1.0,0,0,0,255) -- Top Bar
 			drawRct(UI.x + 5.0,UI.y + 0.85, 1.0,0.50,0,0,0,255) -- Bottom Bar
 
@@ -166,8 +135,8 @@ _nSendSignal = function()
 end
 
 _nStartEffect = function()
+	local playerPed = PlayerPedId()
 	DoScreenFadeOut(500)
-	Citizen.Wait(3000)	
 	TriggerServerEvent("item:reset")
 	TriggerServerEvent("nMedics:SetInComaOFF")
 	NetworkResurrectLocalPlayer(349.674, -574.39, 28.7915-1.0, 0.0, true, false) --> Coord to new coord
@@ -249,15 +218,16 @@ _nBeginDeadTimer = function()
 			Citizen.Wait(0)
 	
 			_nDrawRea()
-			if IsControlPressed(0, Keys['E']) and timeHeld > 60 then
-				_nStartEffect()
-				break
-			end
 
 			if IsControlPressed(0, Keys['E']) then
 				timeHeld = timeHeld + 1
 			else
 				timeHeld = 0
+			end
+
+			if IsControlPressed(0, Keys['E']) and timeHeld > 60 then
+				_nStartEffect()
+				break
 			end
 
 			DrawGenericTextThisFrame()
@@ -266,8 +236,8 @@ _nBeginDeadTimer = function()
 			AddTextComponentString(text)
 			DrawText(0.5, 0.8)
 		end
-			
-		if bleedoutTimer < 1 and IsPedDead then
+
+		if bleedoutTimer < 1 and isDead then
 			_nStartEffect()
 		end
 	end)
